@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-
 <html class="light" lang="es"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
       tailwind.config = {
@@ -79,14 +77,11 @@
     </style>
 </head>
 <body class="text-on-surface antialiased">
-<!-- Top Navigation Bar -->
 <nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md border-b border-slate-200/50 flex items-center justify-between px-6 py-3 shadow-sm">
 <div class="flex items-center gap-8">
 <span class="text-xl font-bold text-indigo-900 tracking-tight">Reserva Académica</span>
 <div class="hidden md:flex items-center gap-6">
 <a class="text-indigo-700 font-semibold text-sm" href="#">Reserva de Espacios</a>
-<a class="text-slate-500 hover:text-indigo-600 transition-colors text-sm" href="#">Mis Reservas</a>
-<a class="text-slate-500 hover:text-indigo-600 transition-colors text-sm" href="#">Catálogo</a>
 </div>
 </div>
 <div class="flex items-center gap-4">
@@ -101,31 +96,18 @@
             </div>
 </div>
 </nav>
-<!-- Side Navigation Bar (Hidden on Mobile) -->
 <aside class="fixed left-0 top-0 h-screen w-64 pt-20 bg-slate-50 hidden lg:flex flex-col gap-2 z-40">
 <div class="px-6 py-4">
 <h2 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Menú Principal</h2>
 <nav class="space-y-1">
-<a class="flex items-center gap-3 px-4 py-3 mx-2 text-slate-600 hover:bg-slate-200/50 rounded-lg transition-all duration-300" href="#">
-<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-<span class="text-sm font-medium">Panel Control</span>
-</a>
 <a class="flex items-center gap-3 bg-indigo-100/50 text-indigo-700 rounded-lg px-4 py-3 mx-2 transition-all duration-300" href="#">
 <span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
 <span class="text-sm font-medium">Mis Reservas</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 mx-2 text-slate-600 hover:bg-slate-200/50 rounded-lg transition-all duration-300" href="#">
-<span class="material-symbols-outlined" data-icon="library_books">library_books</span>
-<span class="text-sm font-medium">Catálogo</span>
 </a>
 </nav>
 </div>
 <div class="mt-auto px-6 py-6 border-t border-slate-200/30">
 <nav class="space-y-1">
-<a class="flex items-center gap-3 px-4 py-3 mx-2 text-slate-600 hover:bg-slate-200/50 rounded-lg transition-all" href="#">
-<span class="material-symbols-outlined" data-icon="settings">settings</span>
-<span class="text-sm font-medium">Configuración</span>
-</a>
 <a class="flex items-center gap-3 px-4 py-3 mx-2 text-error hover:bg-error-container/20 rounded-lg transition-all" href="#">
 <span class="material-symbols-outlined" data-icon="logout">logout</span>
 <span class="text-sm font-medium">Cerrar Sesión</span>
@@ -133,19 +115,15 @@
 </nav>
 </div>
 </aside>
-<!-- Main Content Canvas -->
 <main class="lg:ml-64 pt-24 px-6 pb-12 min-h-screen">
 <div class="max-w-6xl mx-auto">
-<!-- Editorial Header Section -->
 <header class="mb-12">
 <h1 class="text-4xl font-extrabold text-primary tracking-tight mb-2">Reserva de Espacios</h1>
 <p class="text-on-surface-variant max-w-2xl">Gestiona tus horarios de estudio y accede a los laboratorios especializados del campus de manera ágil y sencilla.</p>
 </header>
-<!-- Filtering & Search Bento Section -->
 <section class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
 <div class="md:col-span-3 bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/10">
 <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-<!-- Space Type Filter -->
 <div class="space-y-2">
 <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant">Tipo de Espacio</label>
 <select class="w-full bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary py-3">
@@ -155,12 +133,10 @@
 <option>Auditorios</option>
 </select>
 </div>
-<!-- Date Filter -->
 <div class="space-y-2">
 <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant">Fecha de Interés</label>
 <input class="w-full bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary py-3" type="date"/>
 </div>
-<!-- Availability Check CTA -->
 <div class="flex items-end">
 <button class="w-full academic-gradient text-white font-bold py-3 rounded-lg text-sm shadow-lg hover:shadow-indigo-900/20 transition-all">
                                 Consultar Disponibilidad
@@ -168,7 +144,6 @@
 </div>
 </div>
 </div>
-<!-- Active Sessions Info Card -->
 <div class="bg-primary-container p-6 rounded-xl text-white flex flex-col justify-between relative overflow-hidden">
 <div class="relative z-10">
 <span class="text-xs font-bold uppercase tracking-widest opacity-70">Estado Actual</span>
@@ -177,9 +152,7 @@
 <span class="material-symbols-outlined absolute -bottom-4 -right-4 text-8xl opacity-10 pointer-events-none" data-icon="event_available">event_available</span>
 </div>
 </section>
-<!-- Main Content Area: Empty State / Schedules Grid -->
 <section class="bg-surface-container-low rounded-2xl p-8 min-h-[400px] flex flex-col items-center justify-center text-center border-dashed border-2 border-outline-variant/20">
-<!-- This section is intentionally left clean as an empty list ready for population -->
 <div class="max-w-md">
 <div class="mb-6 inline-flex items-center justify-center w-20 h-20 rounded-full bg-white shadow-sm border border-slate-100">
 <span class="material-symbols-outlined text-4xl text-slate-300" data-icon="search_off">search_off</span>
@@ -187,33 +160,9 @@
 <h3 class="text-xl font-bold text-primary mb-2">Selecciona un tipo de espacio</h3>
 <p class="text-on-surface-variant mb-8 text-sm leading-relaxed">Utiliza los filtros superiores para consultar los horarios disponibles en Salones, Laboratorios o Auditorios.</p>
 </div>
-<!-- Conceptual Placeholder of how items will look (Hidden/Empty logic per prompt) -->
-<!-- 
-                <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
-                     Card Blueprint:
-                     <div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/10">
-                        <div class="flex justify-between items-start mb-4">
-                            <div>
-                                <h4 class="font-bold text-primary">Laboratorio de Redes</h4>
-                                <p class="text-xs text-on-surface-variant">Bloque C - Piso 2</p>
-                            </div>
-                            <span class="bg-surface-container-highest text-[10px] font-bold px-2 py-1 rounded-full uppercase">0/30 plazas</span>
-                        </div>
-                        <div class="flex items-center gap-2 text-sm mb-6 text-on-surface-variant">
-                            <span class="material-symbols-outlined text-lg" data-icon="schedule">schedule</span>
-                            <span>14:00 - 16:00</span>
-                        </div>
-                        <div class="flex gap-2">
-                            <button class="flex-1 academic-gradient text-white text-xs font-bold py-2 rounded-md">Unirse al Horario</button>
-                            <button class="px-3 border border-outline-variant/30 text-primary rounded-md"><span class="material-symbols-outlined text-sm" data-icon="info">info</span></button>
-                        </div>
-                     </div>
-                </div>
-                -->
 </section>
 </div>
 </main>
-<!-- Contextual Floating Action Button -->
 <button class="fixed bottom-8 right-8 academic-gradient text-white h-14 w-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform lg:hidden">
 <span class="material-symbols-outlined" data-icon="add">add</span>
 </button>
