@@ -13,6 +13,7 @@ CREATE TABLE "Espacio" (
     nombre VARCHAR(100) NOT NULL,
     "Primer_Hora_Disponible" TIME NOT NULL,
     "Ultima_Hora_Disponible" TIME NOT NULL,
+    "Reservaciones_Permitidas" INT NOT NULL,
     tipo VARCHAR(50) NOT NULL CHECK(tipo IN ('Salón', 'Laboratorio', 'Auditorio')),
     capacidad INT NOT NULL,
     estado VARCHAR(50) DEFAULT 'Activo' CHECK(estado IN ('Activo', 'Mantenimiento', 'Inactivo'))
