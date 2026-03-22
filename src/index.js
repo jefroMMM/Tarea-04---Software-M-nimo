@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const cors = require('cors');
 const { enviarCorreoBienvenida } = require('./services/emailService');
 const loginRoutes = require('./LoginApi');
+const espacioRoutes = require('./Espacio');
 require('dotenv').config();
 
 const app = express();
@@ -68,6 +69,7 @@ app.post('/api/usuarios', async (req, res) => {
 });
 
 loginRoutes(app, pool);
+espacioRoutes(app, pool);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
