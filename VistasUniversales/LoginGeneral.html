@@ -167,10 +167,8 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
       const data = await response.json();
       const rol = data.usuario.rol;
 
-      // Guardar datos del usuario
       localStorage.setItem('usuario', JSON.stringify(data.usuario));
 
-      // Redirigir según rol
       if (rol === 'Estudiante') {
         window.location.href = '../VistasEstudiante/ReservaEstudiantes.html';
       } else if (rol === 'Profesor' || rol === 'Administrador') {

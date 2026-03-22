@@ -49,7 +49,6 @@ module.exports = (app, pool) => {
     const { nombre, Primer_Hora_Disponible, Ultima_Hora_Disponible, tipo, capacidad, estado } = req.body;
 
     try {
-      // Si solo estÃ¡ actualizando el estado
       if (estado && !nombre && !tipo && !capacidad) {
         if (!['Activo', 'Mantenimiento', 'Inactivo'].includes(estado)) {
           return res.status(400).json({ error: 'Estado no vÃ¡lido' });
@@ -65,7 +64,6 @@ module.exports = (app, pool) => {
         return res.status(200).json({ msg: "Estado actualizado exitosamente" });
       }
 
-      // Si estÃ¡ actualizando los datos del espacio
       if (!nombre || !Primer_Hora_Disponible || !Ultima_Hora_Disponible || !tipo || !capacidad) {
         return res.status(400).json({ error: 'Todos los campos son requeridos' });
       }

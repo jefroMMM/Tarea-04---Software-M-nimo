@@ -2,8 +2,8 @@ module.exports = (app, pool) => {
   app.get('/api/estadisticas', async (req, res) => {
     try {
       const [reservasResult, usuariosResult, espaciosActivosResult, espaciosMantenimientoResult] = await Promise.all([
-        pool.query('SELECT COUNT(*) as total FROM "Reserva"'),
-        pool.query('SELECT COUNT(*) as total FROM "Usuario"'),
+        pool.query('SELECT COUNT(*) as total FROM reserva'),
+        pool.query('SELECT COUNT(*) as total FROM usuario'),
         pool.query('SELECT COUNT(*) as total FROM "Espacio" WHERE estado = \'Activo\''),
         pool.query('SELECT COUNT(*) as total FROM "Espacio" WHERE estado = \'Mantenimiento\'')
       ]);

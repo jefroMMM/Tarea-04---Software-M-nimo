@@ -31,10 +31,8 @@ CREATE TABLE Reserva (
     CONSTRAINT fk_espacio FOREIGN KEY (id_espacio) REFERENCES "Espacio"(id_espacio) ON DELETE CASCADE
 );
 
--- Insertar usuario de prueba
 
 
--- Insertar zonas de ejemplo
 INSERT INTO "Espacio" (nombre, "Primer_Hora_Disponible", "Ultima_Hora_Disponible", tipo, capacidad, estado)
 VALUES
 ('SalÃ³n A-101', '08:00', '18:00', 'SalÃ³n', 40, 'Activo'),

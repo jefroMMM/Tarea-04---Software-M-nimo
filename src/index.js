@@ -6,6 +6,7 @@ const { enviarCorreoBienvenida } = require('./services/emailService');
 const loginRoutes = require('./LoginApi');
 const espacioRoutes = require('./Espacio');
 const reservasRoutes = require('./Reservas');
+const dashboardRoutes = require('./Dashboard');
 require('dotenv').config();
 
 const app = express();
@@ -72,6 +73,7 @@ app.post('/api/usuarios', async (req, res) => {
 loginRoutes(app, pool);
 espacioRoutes(app, pool);
 reservasRoutes(app, pool);
+dashboardRoutes(app, pool);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

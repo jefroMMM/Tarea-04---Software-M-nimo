@@ -1,5 +1,4 @@
 module.exports = (app, pool) => {
-  // Obtener todas las reservas de un usuario
   app.get('/api/reservas/usuario/:id_usuario', async (req, res) => {
     try {
       const { id_usuario } = req.params;
@@ -18,7 +17,6 @@ module.exports = (app, pool) => {
     }
   });
 
-  // Obtener reservas de un espacio en una fecha especÃ­fica
   app.get('/api/reservas/espacio/:id_espacio/fecha/:fecha', async (req, res) => {
     try {
       const { id_espacio, fecha } = req.params;
@@ -35,7 +33,6 @@ module.exports = (app, pool) => {
     }
   });
 
-  // Crear una nueva reserva
   app.post('/api/reservas', async (req, res) => {
     const { id_usuario, id_espacio, fecha, hora_inicio, hora_fin } = req.body;
 
@@ -48,7 +45,6 @@ module.exports = (app, pool) => {
     try {
       await client.query('BEGIN');
 
-      // Bloquea por espacio + fecha para evitar reservas simultÃ¡neas del mismo salÃ³n
       await client.query('SELECT pg_advisory_xact_lock($1, hashtext($2))', [id_espacio, fecha]);
 
       const espacioQuery = `
@@ -128,7 +124,6 @@ module.exports = (app, pool) => {
     }
   });
 
-  // Cancelar una reserva
   app.put('/api/reservas/:id/cancelar', async (req, res) => {
     const { id } = req.params;
 

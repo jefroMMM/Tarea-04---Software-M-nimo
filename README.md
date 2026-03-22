@@ -1,16 +1,16 @@
-# Sistema de Reservas Académicas
+# Sistema de Reservas Academicas
 
-Proyecto base para la gestión de reservas de espacios académicos como salones, laboratorios y auditorios.
+Proyecto base para la gestion de reservas de espacios academicos como salones, laboratorios y auditorios.
 
 ## Requisitos
 
-- Docker Desktop instalado y en ejecución
+- Docker Desktop instalado y en ejecucion
 - Puerto `3000` disponible para el backend
 - Puerto `5432` disponible para PostgreSQL
 
 ## Variables de entorno
 
-El proyecto usa el archivo `.env`. Debe contener al menos:
+El proyecto utiliza un archivo `.env`. Debe incluir al menos:
 
 ```env
 DB_PASSWORD=tu_password_bd
@@ -24,35 +24,29 @@ Notas:
 
 - `DB_PASSWORD` se usa para crear la base de datos en Docker.
 - `DATABASE_URL` debe apuntar al servicio `db` porque el backend corre dentro de Docker.
-- `EMAIL_USER` y `EMAIL_PASS` se usan para enviar credenciales temporales al crear usuarios.
-- Si no quieres probar envío de correos, el backend igual arrancará, pero la creación de usuarios puede fallar cuando intente enviar el email.
+- `EMAIL_USER` y `EMAIL_PASS` se usan para enviar credenciales temporales por correo al crear usuarios.
+- Si no configuras correo, el backend puede iniciar, pero la creacion de usuarios puede fallar al intentar enviar el email.
 
-## Cómo ejecutar el proyecto
+## Como ejecutar el proyecto
 
-1. Ubícate en la raíz del proyecto:
-
-```bash
-cd C:\Users\JefroMM\TareasIngSoftware\Tarea-04---Software-M-nimo
-```
-
-2. Levanta la base de datos y el backend:
+1. Abre una terminal en la raiz del proyecto.
+2. Verifica que exista el archivo `.env` con las variables necesarias.
+3. Levanta los servicios con:
 
 ```bash
 docker compose up --build
 ```
 
-3. Espera a que ambos servicios estén listos:
+4. Espera a que la base de datos y el backend terminen de iniciar.
+5. Abre las vistas HTML desde tu navegador o con una extension como Live Server.
 
-- PostgreSQL se inicializa con el script [sql/esquema.sql](/C:/Users/JefroMM/TareasIngSoftware/Tarea-04---Software-M-nimo/sql/esquema.sql)
-- El backend se expone en `http://localhost:3000`
-
-4. Abre las vistas HTML en el navegador:
+Vistas principales:
 
 - Login: `VistasUniversales/LoginGeneral.html`
 - Panel administrador: `VistasAdmin/DashboardAdmin.html`
 - Panel estudiante: `VistasEstudiante/ReservaEstudiantes.html`
 
-Si las abres con Live Server, normalmente quedan así:
+Si usas Live Server, normalmente las rutas quedan similares a estas:
 
 - `http://127.0.0.1:5500/VistasUniversales/LoginGeneral.html`
 - `http://127.0.0.1:5500/VistasAdmin/DashboardAdmin.html`
@@ -71,17 +65,18 @@ Si las abres con Live Server, normalmente quedan así:
 - `GET /api/reservas/espacio/:id_espacio/fecha/:fecha`
 - `POST /api/reservas`
 - `PUT /api/reservas/:id/cancelar`
+- `GET /api/estadisticas`
 
 ## Base de datos
 
-La base se crea automáticamente al iniciar Docker por primera vez usando:
+La base de datos se inicializa automaticamente la primera vez que se crea el contenedor de PostgreSQL usando el archivo:
 
-- [sql/esquema.sql](/C:/Users/JefroMM/TareasIngSoftware/Tarea-04---Software-M-nimo/sql/esquema.sql)
+- `sql/esquema.sql`
 
-Si ya existe un volumen previo de PostgreSQL y quieres reinicializar la base desde cero, primero debes eliminar el contenedor y su volumen manualmente.
+Si necesitas reconstruir la base desde cero, elimina antes el contenedor y el volumen de PostgreSQL y luego vuelve a ejecutar `docker compose up --build`.
 
-## Documentación de análisis
+## Documentacion de analisis
 
-La documentación solicitada del análisis está en:
+La documentacion solicitada del analisis se encuentra en:
 
-- [docs/ANALISIS.md](/C:/Users/JefroMM/TareasIngSoftware/Tarea-04---Software-M-nimo/docs/ANALISIS.md)
+- `docs/ANALISIS.md`
