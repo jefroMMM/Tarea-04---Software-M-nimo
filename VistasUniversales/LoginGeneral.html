@@ -103,7 +103,7 @@
 <h1 class="text-3xl font-extrabold tracking-tight text-primary mb-2">Inicio de Sesión</h1>
 </header>
 <!-- Login Form -->
-<form onsubmit="event.preventDefault(); window.location.href = '../VistasEstudiante/ReservaEstudiantes.html';" class="space-y-8" method="POST">
+<form id="loginForm" class="space-y-8" method="POST">
 <!-- Email Field -->
 <div class="space-y-2">
 <label class="block text-[10px] uppercase tracking-[0.05em] font-bold text-on-surface-variant px-1" for="email">
@@ -144,4 +144,47 @@
             </p>
 </footer>
 </main>
+<script>
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+
+  try {
+    const response = await fetch('http://localhost:3000/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        correo: email,
+        contrasena: password
+      })
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      const rol = data.usuario.rol;
+
+      // Guardar datos del usuario
+      localStorage.setItem('usuario', JSON.stringify(data.usuario));
+
+      // Redirigir según rol
+      if (rol === 'Estudiante') {
+        window.location.href = '../VistasEstudiante/ReservaEstudiantes.html';
+      } else if (rol === 'Profesor' || rol === 'Administrador') {
+        window.location.href = '../VistasAdmin/DashboardAdmin.html';
+      } else {
+        alert('Rol no reconocido');
+      }
+    } else {
+      const error = await response.json();
+      alert('Error: ' + error.error);
+    }
+  } catch (error) {
+    alert('Error de conexión: ' + error.message);
+  }
+});
+</script>
 </body></html>

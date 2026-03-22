@@ -3,49 +3,47 @@ const { Pool } = require('pg');
 const bcrypt = require('bcrypt');
 const cors = require('cors');
 const { enviarCorreoBienvenida } = require('./services/emailService');
+const loginRoutes = require('./LoginApi');
 require('dotenv').config();
 
 const app = express();
 
-// Middleware para CORS
 app.use(cors());
 
-// Middleware para parsear JSON
 app.use(express.json());
 
-// Pool de conexión a PostgreSQL
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL
 });
 
-// Ruta de prueba
 app.get('/api/test', (req, res) => {
-  res.status(200).json({ msg: "Backend conectado correctamente" });
+  res.status(200).json({ msg: "Backend conectado " });
 });
 
-// Ruta POST para crear usuario
 app.post('/api/usuarios', async (req, res) => {
   const { nombre, correo, rol } = req.body;
 
-  // Validar datos
   if (!nombre || !correo || !rol) {
     return res.status(400).json({ error: 'El nombre, correo y rol son requeridos' });
   }
 
-  // Generar contraseña temporal de 8 caracteres
   const passwordTemporal = Math.random().toString(36).slice(-8);
 
   try {
-    // Encriptar la contraseña con bcrypt
+    const checkQuery = 'SELECT id_usuario FROM usuario WHERE correo = $1';
+    const checkResult = await pool.query(checkQuery, [correo]);
+    
+    if (checkResult.rows.length > 0) {
+      return res.status(409).json({ error: 'El correo ya está registrado en el sistema' });
+    }
+
     const hashedPassword = await bcrypt.hash(passwordTemporal, 10);
 
-    // Insertar usuario en la BD
     const query = 'INSERT INTO usuario (nombre, correo, contrasena, rol) VALUES ($1, $2, $3, $4) RETURNING id_usuario';
     const values = [nombre, correo, hashedPassword, rol];
     
     await pool.query(query, values);
 
-    // Enviar correo con la contraseña temporal
     await enviarCorreoBienvenida(correo, nombre, passwordTemporal);
 
     res.status(201).json({ 
@@ -58,7 +56,8 @@ app.post('/api/usuarios', async (req, res) => {
   }
 });
 
-// Iniciar servidor
+loginRoutes(app, pool);
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor ejecutándose en puerto ${PORT}`);

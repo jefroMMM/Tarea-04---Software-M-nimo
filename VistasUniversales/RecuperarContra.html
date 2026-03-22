@@ -98,7 +98,7 @@
                     Introduce tu correo electrónico institucional. Te enviaremos las instrucciones para restablecer tu contraseña.
                 </p>
 </div>
-<form class="space-y-6">
+<form id="recuperarForm" class="space-y-6">
 <!-- Input Field: Minimalist Style -->
 <div class="space-y-2">
 <label class="block text-[10px] font-bold uppercase tracking-[0.05em] text-outline" for="email">
@@ -128,4 +128,34 @@
             </p>
 </footer>
 </main>
+<script>
+document.getElementById('recuperarForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  const email = document.getElementById('email').value;
+
+  try {
+    const response = await fetch('http://localhost:3000/api/recuperar-contrasena', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        correo: email
+      })
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      alert('✓ Se ha enviado una nueva contraseña a tu correo.\n\nIngresa el correo y la contraseña temporal para iniciar sesión.');
+      window.location.href = 'LoginGeneral.html';
+    } else {
+      const error = await response.json();
+      alert('Error: ' + error.error);
+    }
+  } catch (error) {
+    alert('Error de conexión: ' + error.message);
+  }
+});
+</script>
 </body></html>

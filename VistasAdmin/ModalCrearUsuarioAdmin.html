@@ -228,7 +228,6 @@
 <option>Administrador</option>
 <option>Profesor</option>
 <option>Estudiante</option>
-<option>Personal Administrativo</option>
 </select>
 </div>
 </form>
@@ -272,9 +271,13 @@ async function guardarUsuario() {
       alert('✓ Usuario creado exitosamente. Se envió la contraseña temporal al correo.');
       // Limpiar formulario
       document.getElementById('userForm').reset();
-      // Cerrar modal
-      const modal = bootstrap.Modal.getInstance(document.getElementById('userModal'));
+      // Cerrar modal de forma segura
+      const modalElement = document.getElementById('userModal');
+      const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
       modal.hide();
+      
+      modalElement.classList.remove('show');
+      document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
     } else {
       const error = await response.json();
       alert('Error: ' + (error.error || 'No se pudo crear el usuario'));
