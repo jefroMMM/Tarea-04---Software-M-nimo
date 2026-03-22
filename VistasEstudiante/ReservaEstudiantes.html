@@ -11,53 +11,17 @@
         theme: {
           extend: {
             colors: {
-              "secondary-fixed-dim": "#bac3ff",
-              "surface-tint": "#4c56af",
-              "outline": "#767683",
               "surface-container-low": "#f3f4f5",
               "primary": "#000666",
               "outline-variant": "#c6c5d4",
-              "inverse-primary": "#bdc2ff",
               "on-surface": "#191c1d",
-              "surface-dim": "#d9dadb",
-              "on-primary-fixed-variant": "#343d96",
               "primary-container": "#1a237e",
-              "inverse-surface": "#2e3132",
-              "on-tertiary-container": "#8b9aa4",
               "surface-container": "#edeeef",
-              "on-error-container": "#93000a",
-              "surface-container-high": "#e7e8e9",
-              "error-container": "#ffdad6",
-              "secondary": "#4355b9",
-              "on-primary-fixed": "#000767",
-              "on-tertiary-fixed-variant": "#3b4951",
-              "tertiary-fixed-dim": "#bac9d3",
               "surface": "#f8f9fa",
-              "on-primary-container": "#8690ee",
-              "inverse-on-surface": "#f0f1f2",
-              "on-secondary": "#ffffff",
-              "surface-variant": "#e1e3e4",
-              "on-error": "#ffffff",
-              "tertiary": "#0f1d25",
               "on-surface-variant": "#454652",
-              "on-secondary-fixed": "#00105c",
               "background": "#f8f9fa",
               "error": "#ba1a1a",
-              "tertiary-fixed": "#d6e5ef",
-              "surface-container-highest": "#e1e3e4",
-              "tertiary-container": "#24323a",
-              "secondary-container": "#8596ff",
-              "secondary-fixed": "#dee0ff",
-              "primary-fixed": "#e0e0ff",
-              "surface-bright": "#f8f9fa",
-              "on-background": "#191c1d",
-              "surface-container-lowest": "#ffffff",
-              "primary-fixed-dim": "#bdc2ff",
-              "on-tertiary": "#ffffff",
-              "on-secondary-container": "#11278e",
-              "on-primary": "#ffffff",
-              "on-secondary-fixed-variant": "#293ca0",
-              "on-tertiary-fixed": "#0f1d25"
+              "surface-container-lowest": "#ffffff"
             },
             fontFamily: {
               "headline": ["Inter"],
@@ -72,14 +36,13 @@
 <style>
         body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; }
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-        .glass-nav { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
         .academic-gradient { background: linear-gradient(135deg, #000666 0%, #1a237e 100%); }
     </style>
 </head>
 <body class="text-on-surface antialiased">
 <nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md border-b border-slate-200/50 flex items-center justify-between px-6 py-3 shadow-sm">
 <div class="flex items-center gap-8">
-<span class="text-xl font-bold text-indigo-900 tracking-tight">Reserva Académica</span>
+<span class="text-xl font-bold text-indigo-900 tracking-tight">Reserva AcadÃ©mica</span>
 <div class="hidden md:flex items-center gap-6">
 <a class="text-indigo-700 font-semibold text-sm" href="#">Reserva de Espacios</a>
 </div>
@@ -88,9 +51,9 @@
 <button class="p-2 text-slate-500 hover:bg-slate-100 rounded-full transition-colors">
 <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
 </button>
-<button class="p-2 text-slate-500 hover:bg-slate-100 rounded-full transition-colors">
-<span class="material-symbols-outlined" data-icon="help">help</span>
-</button>
+<a href="../VistasUniversales/LoginGeneral.html" class="p-2 text-slate-500 hover:bg-slate-100 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+</a>
 <div class="h-8 w-8 rounded-full bg-primary-container flex items-center justify-center text-white text-xs font-bold">
                 JD
             </div>
@@ -98,60 +61,571 @@
 </nav>
 <aside class="fixed left-0 top-0 h-screen w-64 pt-20 bg-slate-50 hidden lg:flex flex-col gap-2 z-40">
 <div class="px-6 py-4">
-<h2 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Menú Principal</h2>
+<h2 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">MenÃº Principal</h2>
 <nav class="space-y-1">
-<a class="flex items-center gap-3 bg-indigo-100/50 text-indigo-700 rounded-lg px-4 py-3 mx-2 transition-all duration-300" href="#">
+<a class="flex items-center gap-3 bg-indigo-100/50 text-indigo-700 rounded-lg px-4 py-3 mx-2 transition-all duration-300 cursor-pointer" onclick="mostrarSeccion('espacios')">
 <span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span class="text-sm font-medium">Reservar</span>
+</a>
+<a class="flex items-center gap-3 text-slate-600 hover:bg-slate-200/50 rounded-lg px-4 py-3 mx-2 transition-all duration-300 cursor-pointer" onclick="mostrarSeccion('mis-reservas')">
+<span class="material-symbols-outlined" data-icon="event_note">event_note</span>
 <span class="text-sm font-medium">Mis Reservas</span>
 </a>
 </nav>
 </div>
 <div class="mt-auto px-6 py-6 border-t border-slate-200/30">
 <nav class="space-y-1">
-<a class="flex items-center gap-3 px-4 py-3 mx-2 text-error hover:bg-error-container/20 rounded-lg transition-all" href="#">
+<a class="flex items-center gap-3 px-4 py-3 mx-2 text-red-600 hover:bg-red-50 rounded-lg transition-all" href="../VistasUniversales/LoginGeneral.html">
 <span class="material-symbols-outlined" data-icon="logout">logout</span>
-<span class="text-sm font-medium">Cerrar Sesión</span>
+<span class="text-sm font-medium">Cerrar SesiÃ³n</span>
 </a>
 </nav>
 </div>
 </aside>
 <main class="lg:ml-64 pt-24 px-6 pb-12 min-h-screen">
 <div class="max-w-6xl mx-auto">
+<section id="espacios-section">
 <header class="mb-12">
 <h1 class="text-4xl font-extrabold text-primary tracking-tight mb-2">Reserva de Espacios</h1>
-<p class="text-on-surface-variant max-w-2xl">Gestiona tus horarios de estudio y accede a los laboratorios especializados del campus de manera ágil y sencilla.</p>
+<p class="text-on-surface-variant max-w-2xl">Consulta espacios activos y en mantenimiento. Solo los activos pueden reservarse.</p>
 </header>
+
 <section class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
 <div class="md:col-span-3 bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/10">
 <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
 <div class="space-y-2">
 <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant">Tipo de Espacio</label>
-<select class="w-full bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary py-3">
-<option>Todos los Espacios</option>
-<option>Salones</option>
-<option>Laboratorios</option>
-<option>Auditorios</option>
+<select id="filtroTipo" class="w-full bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary py-3" onchange="cargarEspacios()">
+<option value="">Todos los Espacios</option>
+<option value="SalÃ³n">Salones</option>
+<option value="Laboratorio">Laboratorios</option>
+<option value="Auditorio">Auditorios</option>
 </select>
 </div>
 <div class="space-y-2">
-<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant">Fecha de Interés</label>
-<input class="w-full bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary py-3" type="date"/>
+<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant">Fecha de InterÃ©s</label>
+<input id="filtroFecha" class="w-full bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary py-3" type="date" onchange="cargarEspacios()"/>
 </div>
 </div>
 </div>
 </section>
-<section class="bg-surface-container-low rounded-2xl p-8 min-h-[400px] flex flex-col items-center justify-center text-center border-dashed border-2 border-outline-variant/20">
+
+<section class="grid grid-cols-1 gap-6 mb-10" id="espacios-grid">
+<div class="col-span-1 bg-surface-container-low rounded-2xl p-8 flex flex-col items-center justify-center text-center border-dashed border-2 border-outline-variant/20 min-h-[300px]">
 <div class="max-w-md">
 <div class="mb-6 inline-flex items-center justify-center w-20 h-20 rounded-full bg-white shadow-sm border border-slate-100">
 <span class="material-symbols-outlined text-4xl text-slate-300" data-icon="search_off">search_off</span>
 </div>
-<h3 class="text-xl font-bold text-primary mb-2">Selecciona un tipo de espacio</h3>
-<p class="text-on-surface-variant mb-8 text-sm leading-relaxed">Utiliza los filtros superiores para consultar los horarios disponibles en Salones, Laboratorios o Auditorios.</p>
+<h3 class="text-xl font-bold text-primary mb-2">Cargando espacios...</h3>
+</div>
+</div>
+</section>
+</section>
+
+<section id="mis-reservas-section" style="display: none;">
+<header class="mb-8">
+<h2 class="text-3xl font-extrabold text-primary tracking-tight mb-2">Mis Reservas</h2>
+<p class="text-on-surface-variant">AquÃ­ puedes ver y cancelar tus reservas activas.</p>
+</header>
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/10 overflow-hidden shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low">
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Espacio</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Fecha</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Horario</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Estado</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest text-right">AcciÃ³n</th>
+</tr>
+</thead>
+<tbody id="mis-reservas-tbody">
+<tr>
+<td class="px-6 py-12 text-center text-on-surface-variant" colspan="5">Cargando reservas...</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </section>
 </div>
-</main>
-<button class="fixed bottom-8 right-8 academic-gradient text-white h-14 w-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform lg:hidden">
-<span class="material-symbols-outlined" data-icon="add">add</span>
+
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center px-4" id="reservaModal">
+<div class="absolute inset-0 bg-black/40 backdrop-blur-sm" onclick="cerrarModal()"></div>
+<div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden">
+<div class="px-8 py-6 border-b border-slate-200 flex items-center justify-between bg-white">
+<h3 class="text-2xl font-bold text-primary">Crear Reserva</h3>
+<button class="p-2 hover:bg-slate-100 rounded-full transition-colors" onclick="cerrarModal()">
+<span class="material-symbols-outlined text-slate-400">close</span>
 </button>
+</div>
+<div class="p-8 space-y-6">
+<div>
+<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">Espacio</label>
+<input type="hidden" id="reservaEspacioId"/>
+<input type="text" id="reservaEspacioNombre" disabled class="w-full bg-surface-container-low border-none rounded-lg p-3 text-sm"/>
+</div>
+<div>
+<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">Fecha</label>
+<input type="date" id="reservaFecha" class="w-full bg-surface-container-low border-none rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary" onchange="cargarReservasDelEspacio()"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">Horario Disponible Desde</label>
+<input type="time" id="horarioDisponibleInicio" disabled class="w-full bg-slate-100 border-none rounded-lg p-3 text-sm"/>
+</div>
+<div>
+<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">Horario Disponible Hasta</label>
+<input type="time" id="horarioDisponibleFin" disabled class="w-full bg-slate-100 border-none rounded-lg p-3 text-sm"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">Hora Solicitada Inicio</label>
+<input type="time" id="reservaHoraInicio" class="w-full bg-surface-container-low border-none rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary" onchange="validarDisponibilidadSeleccionada()"/>
+</div>
+<div>
+<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">Hora Solicitada Fin</label>
+<input type="time" id="reservaHoraFin" class="w-full bg-surface-container-low border-none rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary" onchange="validarDisponibilidadSeleccionada()"/>
+</div>
+</div>
+<div class="rounded-xl bg-surface-container p-4">
+<p class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">Horarios asignados</p>
+<div id="reservasExistentes" class="text-sm text-on-surface-variant">Selecciona una fecha para consultar horarios ocupados.</div>
+</div>
+<div id="reservaValidacion" class="text-sm text-slate-500"></div>
+</div>
+<div class="px-8 pb-8 flex items-center gap-3">
+<button class="flex-1 py-3 text-sm font-bold uppercase tracking-widest text-primary hover:bg-primary/5 rounded-lg transition-colors" onclick="cerrarModal()">Cancelar</button>
+<button id="reservaSubmitBtn" class="flex-1 py-3 bg-gradient-to-r from-primary to-primary-container text-white text-sm font-bold uppercase tracking-widest rounded-lg hover:shadow-lg transition-all" onclick="crearReserva()">Crear Reserva</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+<script>
+let reservasActuales = [];
+
+function obtenerUsuarioActual() {
+    const usuarioGuardado = localStorage.getItem('usuario');
+
+    if (!usuarioGuardado) {
+        window.location.href = '../VistasUniversales/LoginGeneral.html';
+        return null;
+    }
+
+    try {
+        const usuario = JSON.parse(usuarioGuardado);
+
+        if (!usuario || !usuario.id) {
+            localStorage.removeItem('usuario');
+            window.location.href = '../VistasUniversales/LoginGeneral.html';
+            return null;
+        }
+
+        return usuario;
+    } catch (error) {
+        localStorage.removeItem('usuario');
+        window.location.href = '../VistasUniversales/LoginGeneral.html';
+        return null;
+    }
+}
+
+function obtenerFechaFiltro() {
+    const inputFecha = document.getElementById('filtroFecha');
+    if (!inputFecha.value) {
+        inputFecha.value = new Date().toISOString().split('T')[0];
+    }
+    return inputFecha.value;
+}
+
+function ordenarEspacios(espacios) {
+    const prioridadEstado = { Activo: 0, Mantenimiento: 1 };
+    return espacios.sort((a, b) => {
+        const diferenciaEstado = prioridadEstado[a.estado] - prioridadEstado[b.estado];
+        if (diferenciaEstado !== 0) {
+            return diferenciaEstado;
+        }
+        return a.nombre.localeCompare(b.nombre);
+    });
+}
+
+function formatearReservas(reservas) {
+    if (!reservas.length) {
+        return 'No hay horarios ocupados para la fecha seleccionada.';
+    }
+
+    return reservas
+        .map((reserva) => `${reserva.hora_inicio.substring(0, 5)} - ${reserva.hora_fin.substring(0, 5)}`)
+        .join(', ');
+}
+
+function hayTraslape(horaInicio, horaFin, reservas) {
+    return reservas.some((reserva) => horaInicio < reserva.hora_fin && horaFin > reserva.hora_inicio);
+}
+
+function actualizarBotonReserva(habilitado, texto) {
+    const boton = document.getElementById('reservaSubmitBtn');
+    boton.disabled = !habilitado;
+    boton.textContent = texto;
+    boton.className = habilitado
+        ? 'flex-1 py-3 bg-gradient-to-r from-primary to-primary-container text-white text-sm font-bold uppercase tracking-widest rounded-lg hover:shadow-lg transition-all'
+        : 'flex-1 py-3 bg-slate-300 text-slate-500 text-sm font-bold uppercase tracking-widest rounded-lg cursor-not-allowed';
+}
+
+function mostrarSeccion(seccion) {
+    const espaciosSection = document.getElementById('espacios-section');
+    const misReservasSection = document.getElementById('mis-reservas-section');
+    const links = document.querySelectorAll('aside nav a');
+
+    espaciosSection.style.display = seccion === 'espacios' ? 'block' : 'none';
+    misReservasSection.style.display = seccion === 'mis-reservas' ? 'block' : 'none';
+
+    links.forEach((link) => {
+        link.classList.remove('bg-indigo-100/50', 'text-indigo-700');
+        link.classList.add('text-slate-600');
+    });
+
+    if (seccion === 'espacios') {
+        links[0].classList.add('bg-indigo-100/50', 'text-indigo-700');
+        links[0].classList.remove('text-slate-600');
+    } else {
+        links[1].classList.add('bg-indigo-100/50', 'text-indigo-700');
+        links[1].classList.remove('text-slate-600');
+        cargarMisReservas();
+    }
+}
+
+async function cargarEspacios() {
+    const tipo = document.getElementById('filtroTipo').value;
+    const fecha = obtenerFechaFiltro();
+    const gridContainer = document.getElementById('espacios-grid');
+
+    try {
+        const response = await fetch('http://localhost:3000/api/espacios');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        let espacios = await response.json();
+        espacios = espacios.filter((espacio) => espacio.estado === 'Activo' || espacio.estado === 'Mantenimiento');
+
+        if (tipo) {
+            espacios = espacios.filter((espacio) => espacio.tipo === tipo);
+        }
+
+        espacios = ordenarEspacios(espacios);
+
+        if (!espacios.length) {
+            gridContainer.innerHTML = `
+                <div class="col-span-1 bg-surface-container-low rounded-2xl p-8 flex flex-col items-center justify-center text-center border-dashed border-2 border-outline-variant/20 min-h-[300px]">
+                    <div class="max-w-md">
+                        <div class="mb-6 inline-flex items-center justify-center w-20 h-20 rounded-full bg-white shadow-sm border border-slate-100">
+                            <span class="material-symbols-outlined text-4xl text-slate-300">domain</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-2">No hay espacios disponibles</h3>
+                        <p class="text-on-surface-variant">Intenta ajustar los filtros o vuelve mÃ¡s tarde.</p>
+                    </div>
+                </div>
+            `;
+            return;
+        }
+
+        const tarjetas = await Promise.all(espacios.map(async (espacio) => {
+            let reservas = [];
+
+            try {
+                const reservasResponse = await fetch(`http://localhost:3000/api/reservas/espacio/${espacio.id_espacio}/fecha/${fecha}`);
+                if (reservasResponse.ok) {
+                    reservas = await reservasResponse.json();
+                }
+            } catch (error) {
+                console.error('Error al consultar reservas del espacio:', error);
+            }
+
+            const estadoColor = espacio.estado === 'Activo' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800';
+            const botonDisponible = espacio.estado === 'Activo';
+            const textoBoton = botonDisponible ? 'Reservar' : 'En mantenimiento';
+            const clasesBoton = botonDisponible
+                ? 'w-full py-3 bg-primary text-white font-bold uppercase tracking-wider rounded-lg hover:opacity-90 transition-all'
+                : 'w-full py-3 bg-slate-200 text-slate-500 font-bold uppercase tracking-wider rounded-lg cursor-not-allowed';
+
+            return `
+                <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="p-6">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="text-lg font-bold text-primary">${espacio.nombre}</h3>
+                                <p class="text-sm text-on-surface-variant mt-1">${espacio.tipo}</p>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-semibold ${estadoColor}">
+                                ${espacio.estado}
+                            </span>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 mb-4 p-4 bg-surface-container rounded-lg">
+                            <div>
+                                <p class="text-xs text-on-surface-variant font-semibold">Capacidad</p>
+                                <p class="text-lg font-bold text-primary">${espacio.capacidad}</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-on-surface-variant font-semibold">Horario</p>
+                                <p class="text-lg font-bold text-primary">${espacio.Primer_Hora_Disponible.substring(0, 5)} - ${espacio.Ultima_Hora_Disponible.substring(0, 5)}</p>
+                            </div>
+                        </div>
+
+                        <details class="mb-4 rounded-lg bg-surface-container p-4">
+                            <summary class="cursor-pointer text-sm font-semibold text-primary">Horarios asignados</summary>
+                            <p class="mt-3 text-sm text-on-surface-variant">${formatearReservas(reservas)}</p>
+                        </details>
+
+                        <button class="${clasesBoton}" ${botonDisponible ? `onclick="abrirModalReserva(${espacio.id_espacio}, '${espacio.nombre.replace(/'/g, "\\'")}', '${espacio.Primer_Hora_Disponible}', '${espacio.Ultima_Hora_Disponible}')"` : 'disabled'}>
+                            ${textoBoton}
+                        </button>
+                    </div>
+                </div>
+            `;
+        }));
+
+        gridContainer.innerHTML = tarjetas.join('');
+    } catch (error) {
+        console.error('Error al cargar espacios:', error);
+        gridContainer.innerHTML = `
+            <div class="col-span-1 bg-red-50 rounded-2xl p-8 flex flex-col items-center justify-center text-center border-2 border-red-200 min-h-[300px]">
+                <p class="text-red-600 font-bold">Error al cargar espacios</p>
+            </div>
+        `;
+    }
+}
+
+async function cargarMisReservas() {
+    const usuarioActual = obtenerUsuarioActual();
+    if (!usuarioActual) {
+        return;
+    }
+
+    const tbody = document.getElementById('mis-reservas-tbody');
+    tbody.innerHTML = `
+        <tr>
+            <td class="px-6 py-12 text-center text-on-surface-variant" colspan="5">Cargando reservas...</td>
+        </tr>
+    `;
+
+    try {
+        const response = await fetch(`http://localhost:3000/api/reservas/usuario/${usuarioActual.id}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const reservas = await response.json();
+
+        if (!reservas.length) {
+            tbody.innerHTML = `
+                <tr>
+                    <td class="px-6 py-12 text-center text-on-surface-variant" colspan="5">No tienes reservas activas.</td>
+                </tr>
+            `;
+            return;
+        }
+
+        tbody.innerHTML = reservas.map((reserva) => `
+            <tr class="border-b border-outline-variant/10 hover:bg-surface-container-low transition-colors">
+                <td class="px-6 py-4">
+                    <p class="font-medium text-on-surface">${reserva.espacio_nombre}</p>
+                    <p class="text-sm text-on-surface-variant">${reserva.tipo}</p>
+                </td>
+                <td class="px-6 py-4 text-sm text-on-surface-variant">${reserva.fecha}</td>
+                <td class="px-6 py-4 text-sm text-on-surface-variant">${reserva.hora_inicio.substring(0, 5)} - ${reserva.hora_fin.substring(0, 5)}</td>
+                <td class="px-6 py-4 text-sm text-on-surface-variant">${reserva.estado_reserva}</td>
+                <td class="px-6 py-4 text-right">
+                    <button class="px-4 py-2 rounded-lg bg-red-50 text-red-600 text-sm font-semibold hover:bg-red-100 transition-colors" onclick="cancelarReserva(${reserva.id_reserva})">
+                        Eliminar
+                    </button>
+                </td>
+            </tr>
+        `).join('');
+    } catch (error) {
+        tbody.innerHTML = `
+            <tr>
+                <td class="px-6 py-12 text-center text-red-600" colspan="5">Error al cargar reservas: ${error.message}</td>
+            </tr>
+        `;
+    }
+}
+
+async function cancelarReserva(idReserva) {
+    if (!confirm('¿Deseas cancelar esta reserva?')) {
+        return;
+    }
+
+    try {
+        const response = await fetch(`http://localhost:3000/api/reservas/${idReserva}/cancelar`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error || 'No se pudo cancelar la reserva');
+        }
+
+        cargarMisReservas();
+        cargarEspacios();
+    } catch (error) {
+        alert(`Error: ${error.message}`);
+    }
+}
+
+async function abrirModalReserva(id, nombre, horaInicio, horaFin) {
+    document.getElementById('reservaEspacioId').value = id;
+    document.getElementById('reservaEspacioNombre').value = nombre;
+    document.getElementById('reservaFecha').value = obtenerFechaFiltro();
+    document.getElementById('horarioDisponibleInicio').value = horaInicio.substring(0, 5);
+    document.getElementById('horarioDisponibleFin').value = horaFin.substring(0, 5);
+    document.getElementById('reservaHoraInicio').min = horaInicio.substring(0, 5);
+    document.getElementById('reservaHoraInicio').max = horaFin.substring(0, 5);
+    document.getElementById('reservaHoraFin').min = horaInicio.substring(0, 5);
+    document.getElementById('reservaHoraFin').max = horaFin.substring(0, 5);
+    document.getElementById('reservaHoraInicio').value = '';
+    document.getElementById('reservaHoraFin').value = '';
+    document.getElementById('reservaValidacion').innerHTML = '';
+    document.getElementById('reservasExistentes').textContent = 'Consultando horarios asignados...';
+    actualizarBotonReserva(false, 'Selecciona horario');
+    document.getElementById('reservaModal').classList.remove('hidden');
+    await cargarReservasDelEspacio();
+}
+
+function cerrarModal() {
+    document.getElementById('reservaModal').classList.add('hidden');
+    reservasActuales = [];
+}
+
+async function cargarReservasDelEspacio() {
+    const espacioId = document.getElementById('reservaEspacioId').value;
+    const fecha = document.getElementById('reservaFecha').value;
+    const reservasDiv = document.getElementById('reservasExistentes');
+
+    if (!espacioId || !fecha) {
+        reservasDiv.textContent = 'Selecciona una fecha para consultar horarios ocupados.';
+        return;
+    }
+
+    try {
+        const response = await fetch(`http://localhost:3000/api/reservas/espacio/${espacioId}/fecha/${fecha}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        reservasActuales = await response.json();
+        reservasDiv.textContent = formatearReservas(reservasActuales);
+        validarDisponibilidadSeleccionada();
+    } catch (error) {
+        reservasActuales = [];
+        reservasDiv.textContent = `No se pudieron cargar las reservas: ${error.message}`;
+        actualizarBotonReserva(false, 'Sin disponibilidad');
+    }
+}
+
+function validarDisponibilidadSeleccionada() {
+    const horaInicio = document.getElementById('reservaHoraInicio').value;
+    const horaFin = document.getElementById('reservaHoraFin').value;
+    const disponibleInicio = document.getElementById('horarioDisponibleInicio').value;
+    const disponibleFin = document.getElementById('horarioDisponibleFin').value;
+    const validacionDiv = document.getElementById('reservaValidacion');
+
+    validacionDiv.innerHTML = '';
+
+    if (!horaInicio || !horaFin) {
+        actualizarBotonReserva(false, 'Selecciona horario');
+        return false;
+    }
+
+    if (horaInicio >= horaFin) {
+        validacionDiv.innerHTML = '<p class="text-red-600">La hora de inicio debe ser menor a la hora final.</p>';
+        actualizarBotonReserva(false, 'Horario invÃ¡lido');
+        return false;
+    }
+
+    if (horaInicio < disponibleInicio || horaFin > disponibleFin) {
+        validacionDiv.innerHTML = `<p class="text-red-600">El horario solicitado debe estar entre ${disponibleInicio} y ${disponibleFin}.</p>`;
+        actualizarBotonReserva(false, 'Fuera de rango');
+        return false;
+    }
+
+    if (hayTraslape(horaInicio, horaFin, reservasActuales)) {
+        validacionDiv.innerHTML = '<p class="text-red-600">Ese espacio ya estÃ¡ asignado en el horario seleccionado.</p>';
+        actualizarBotonReserva(false, 'Ya asignado');
+        return false;
+    }
+
+    validacionDiv.innerHTML = '<p class="text-green-600">Horario disponible.</p>';
+    actualizarBotonReserva(true, 'Crear Reserva');
+    return true;
+}
+
+async function crearReserva() {
+    const usuarioActual = obtenerUsuarioActual();
+    if (!usuarioActual) {
+        return;
+    }
+
+    const espacioId = document.getElementById('reservaEspacioId').value;
+    const fecha = document.getElementById('reservaFecha').value;
+    const horaInicio = document.getElementById('reservaHoraInicio').value;
+    const horaFin = document.getElementById('reservaHoraFin').value;
+    const validacionDiv = document.getElementById('reservaValidacion');
+
+    if (!fecha || !horaInicio || !horaFin) {
+        validacionDiv.innerHTML = '<p class="text-red-600">Por favor completa todos los campos.</p>';
+        return;
+    }
+
+    if (!validarDisponibilidadSeleccionada()) {
+        return;
+    }
+
+    try {
+        const response = await fetch('http://localhost:3000/api/reservas', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                id_usuario: usuarioActual.id,
+                id_espacio: parseInt(espacioId, 10),
+                fecha: fecha,
+                hora_inicio: horaInicio,
+                hora_fin: horaFin
+            })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert('Reserva creada exitosamente');
+            cerrarModal();
+            cargarEspacios();
+            cargarMisReservas();
+        } else {
+            validacionDiv.innerHTML = `<p class="text-red-600">${data.error}</p>`;
+            console.error('Error al crear reserva:', data.error);
+        }
+    } catch (error) {
+        validacionDiv.innerHTML = `<p class="text-red-600">Error de conexiÃ³n: ${error.message}</p>`;
+        console.error('Error de conexiÃ³n al crear reserva:', error);
+    }
+}
+
+window.addEventListener('load', () => {
+    const usuarioActual = obtenerUsuarioActual();
+    if (!usuarioActual) {
+        return;
+    }
+
+    obtenerFechaFiltro();
+    mostrarSeccion('espacios');
+    cargarEspacios();
+    cargarMisReservas();
+});
+</script>
 </body></html>

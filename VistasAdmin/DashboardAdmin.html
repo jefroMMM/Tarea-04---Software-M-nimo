@@ -178,7 +178,6 @@
                             <th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Nombre</th>
                             <th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Tipo</th>
                             <th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Capacidad</th>
-                            <th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Reservaciones Permitidas</th>
                             <th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Horas Disponibles</th>
                             <th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Estado</th>
                             <th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest text-right">Acciones</th>
@@ -419,7 +418,6 @@ async function cargarEspacios() {
                         </td>
                         <td class="px-8 py-4 text-on-surface-variant text-sm">${espacio.tipo}</td>
                         <td class="px-8 py-4 text-on-surface-variant text-sm">${espacio.capacidad} personas</td>
-                        <td class="px-8 py-4 text-on-surface-variant text-sm">${espacio.Reservaciones_Permitidas} reservaciones</td>
                         <td class="px-8 py-4 text-on-surface-variant text-sm">${espacio.Primer_Hora_Disponible.substring(0, 5)} - ${espacio.Ultima_Hora_Disponible.substring(0, 5)}</td>
                         <td class="px-8 py-4">
                             <select class="px-3 py-1 text-xs font-semibold rounded-full border-none cursor-pointer ${estadoColor}" onchange="cambiarEstadoEspacio(${espacio.id_espacio}, this.value)">
@@ -430,7 +428,7 @@ async function cargarEspacios() {
                         </td>
                         <td class="px-8 py-4 text-right">
                             <div class="flex gap-2 justify-end">
-                                <button class="text-slate-400 hover:text-blue-600 transition-colors" onclick="abrirModalEditarEspacio(${espacio.id_espacio}, '${espacio.nombre}', '${espacio.Primer_Hora_Disponible.substring(0, 5)}', '${espacio.Ultima_Hora_Disponible.substring(0, 5)}', '${espacio.tipo}', ${espacio.capacidad}, ${espacio.Reservaciones_Permitidas})">
+                                <button class="text-slate-400 hover:text-blue-600 transition-colors" onclick="abrirModalEditarEspacio(${espacio.id_espacio}, '${espacio.nombre}', '${espacio.Primer_Hora_Disponible.substring(0, 5)}', '${espacio.Ultima_Hora_Disponible.substring(0, 5)}', '${espacio.tipo}', ${espacio.capacidad})">
                                     <span class="material-symbols-outlined text-lg">edit</span>
                                 </button>
                                 <button class="text-slate-400 hover:text-red-600 transition-colors" onclick="eliminarEspacio(${espacio.id_espacio})">
@@ -460,20 +458,13 @@ async function guardarEspacio() {
     const horaFin = document.getElementById('horaFinInput').value;
     const tipo = document.getElementById('tipoEspacioSelect').value;
     const capacidad = document.getElementById('capacidadInput').value;
-    const reservaciones = document.getElementById('reservacionesInput').value;
-
-    if (!nombre || !horaInicio || !horaFin || !tipo || !capacidad || !reservaciones) {
+    if (!nombre || !horaInicio || !horaFin || !tipo || !capacidad) {
         alert('Por favor completa todos los campos');
         return;
     }
 
     if (parseInt(capacidad) <= 0) {
         alert('La capacidad debe ser mayor a 0');
-        return;
-    }
-
-    if (parseInt(reservaciones) <= 0) {
-        alert('Las reservaciones permitidas deben ser mayor a 0');
         return;
     }
 
@@ -488,8 +479,7 @@ async function guardarEspacio() {
                 Primer_Hora_Disponible: horaInicio,
                 Ultima_Hora_Disponible: horaFin,
                 tipo: tipo,
-                capacidad: parseInt(capacidad),
-                Reservaciones_Permitidas: parseInt(reservaciones)
+                capacidad: parseInt(capacidad)
             })
         });
 
@@ -538,14 +528,13 @@ async function cambiarEstadoEspacio(id, nuevoEstado) {
     }
 }
 
-function abrirModalEditarEspacio(id, nombre, horaInicio, horaFin, tipo, capacidad, reservaciones) {
+function abrirModalEditarEspacio(id, nombre, horaInicio, horaFin, tipo, capacidad) {
     document.getElementById('espacioEditIdInput').value = id;
     document.getElementById('nombreEspacioEditInput').value = nombre;
     document.getElementById('horaInicioEditInput').value = horaInicio;
     document.getElementById('horaFinEditInput').value = horaFin;
     document.getElementById('tipoEspacioEditSelect').value = tipo;
     document.getElementById('capacidadEditInput').value = capacidad;
-    document.getElementById('reservacionesEditInput').value = reservaciones;
     
     const modalElement = document.getElementById('espacioEditModal');
     const modal = new bootstrap.Modal(modalElement);
@@ -559,20 +548,13 @@ async function guardarEspacioEditado() {
     const horaFin = document.getElementById('horaFinEditInput').value;
     const tipo = document.getElementById('tipoEspacioEditSelect').value;
     const capacidad = document.getElementById('capacidadEditInput').value;
-    const reservaciones = document.getElementById('reservacionesEditInput').value;
-
-    if (!nombre || !horaInicio || !horaFin || !tipo || !capacidad || !reservaciones) {
+    if (!nombre || !horaInicio || !horaFin || !tipo || !capacidad) {
         alert('Por favor completa todos los campos');
         return;
     }
 
     if (parseInt(capacidad) <= 0) {
         alert('La capacidad debe ser mayor a 0');
-        return;
-    }
-
-    if (parseInt(reservaciones) <= 0) {
-        alert('Las reservaciones permitidas deben ser mayor a 0');
         return;
     }
 
@@ -587,8 +569,7 @@ async function guardarEspacioEditado() {
                 Primer_Hora_Disponible: horaInicio,
                 Ultima_Hora_Disponible: horaFin,
                 tipo: tipo,
-                capacidad: parseInt(capacidad),
-                Reservaciones_Permitidas: parseInt(reservaciones)
+                capacidad: parseInt(capacidad)
             })
         });
 
@@ -669,10 +650,6 @@ async function eliminarEspacio(id) {
                         <label class="form-label small">Capacidad</label>
                         <input class="form-control" id="capacidadInput" placeholder="Número de personas" required="" type="number" min="1"/>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label small">Reservaciones Permitidas por Usuario</label>
-                        <input class="form-control" id="reservacionesInput" placeholder="Número máximo de reservaciones" required="" type="number" min="1"/>
-                    </div>
                 </form>
             </div>
             <div class="modal-footer border-top-0 pb-4 px-4 gap-2">
@@ -717,10 +694,6 @@ async function eliminarEspacio(id) {
                     <div class="mb-3">
                         <label class="form-label small">Capacidad</label>
                         <input class="form-control" id="capacidadEditInput" placeholder="Número de personas" required="" type="number" min="1"/>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label small">Reservaciones Permitidas por Usuario</label>
-                        <input class="form-control" id="reservacionesEditInput" placeholder="Número máximo de reservaciones" required="" type="number" min="1"/>
                     </div>
                 </form>
             </div>

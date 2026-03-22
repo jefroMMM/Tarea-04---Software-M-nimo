@@ -13,8 +13,7 @@ CREATE TABLE "Espacio" (
     nombre VARCHAR(100) NOT NULL,
     "Primer_Hora_Disponible" TIME NOT NULL,
     "Ultima_Hora_Disponible" TIME NOT NULL,
-    "Reservaciones_Permitidas" INT NOT NULL,
-    tipo VARCHAR(50) NOT NULL CHECK(tipo IN ('Salón', 'Laboratorio', 'Auditorio')),
+    tipo VARCHAR(50) NOT NULL CHECK(tipo IN ('SalÃ³n', 'Laboratorio', 'Auditorio')),
     capacidad INT NOT NULL,
     estado VARCHAR(50) DEFAULT 'Activo' CHECK(estado IN ('Activo', 'Mantenimiento', 'Inactivo'))
 );
@@ -32,3 +31,12 @@ CREATE TABLE Reserva (
     CONSTRAINT fk_espacio FOREIGN KEY (id_espacio) REFERENCES "Espacio"(id_espacio) ON DELETE CASCADE
 );
 
+-- Insertar usuario de prueba
+
+
+-- Insertar zonas de ejemplo
+INSERT INTO "Espacio" (nombre, "Primer_Hora_Disponible", "Ultima_Hora_Disponible", tipo, capacidad, estado)
+VALUES
+('SalÃ³n A-101', '08:00', '18:00', 'SalÃ³n', 40, 'Activo'),
+('Laboratorio de ComputaciÃ³n', '08:00', '17:00', 'Laboratorio', 25, 'Mantenimiento'),
+('Auditorio Principal', '09:00', '19:00', 'Auditorio', 200, 'Inactivo');
