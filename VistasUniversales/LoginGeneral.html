@@ -103,7 +103,7 @@
 <h1 class="text-3xl font-extrabold tracking-tight text-primary mb-2">Inicio de Sesión</h1>
 </header>
 <!-- Login Form -->
-<form action="#" class="space-y-8" method="POST">
+<form onsubmit="event.preventDefault(); window.location.href = '../VistasEstudiante/ReservaEstudiantes.html';" class="space-y-8" method="POST">
 <!-- Email Field -->
 <div class="space-y-2">
 <label class="block text-[10px] uppercase tracking-[0.05em] font-bold text-on-surface-variant px-1" for="email">
@@ -124,7 +124,7 @@
 <input class="w-full bg-surface-container-low border-none rounded-md px-4 py-3.5 text-on-surface placeholder:text-on-surface-variant/40 focus:ring-0 transition-all border-b-2 border-transparent focus:border-primary" id="password" name="password" placeholder="••••••••" required="" type="password"/>
 </div>
 <div class="flex justify-end pt-1">
-<a class="text-xs font-medium text-primary hover:text-secondary transition-colors duration-200" href="#">
+<a class="text-xs font-medium text-primary hover:text-secondary transition-colors duration-200" href="RecuperarContra.html">
                             ¿Olvidaste tu contraseña?
                         </a>
 </div>
