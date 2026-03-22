@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-fixed-dim": "#bac3ff",
+              "surface-tint": "#4c56af",
+              "outline": "#767683",
+              "surface-container-low": "#f3f4f5",
+              "primary": "#000666",
+              "outline-variant": "#c6c5d4",
+              "inverse-primary": "#bdc2ff",
+              "on-surface": "#191c1d",
+              "surface-dim": "#d9dadb",
+              "on-primary-fixed-variant": "#343d96",
+              "primary-container": "#1a237e",
+              "inverse-surface": "#2e3132",
+              "on-tertiary-container": "#8b9aa4",
+              "surface-container": "#edeeef",
+              "on-error-container": "#93000a",
+              "surface-container-high": "#e7e8e9",
+              "error-container": "#ffdad6",
+              "secondary": "#4355b9",
+              "on-primary-fixed": "#000767",
+              "on-tertiary-fixed-variant": "#3b4951",
+              "tertiary-fixed-dim": "#bac9d3",
+              "surface": "#f8f9fa",
+              "on-primary-container": "#8690ee",
+              "inverse-on-surface": "#f0f1f2",
+              "on-secondary": "#ffffff",
+              "surface-variant": "#e1e3e4",
+              "on-error": "#ffffff",
+              "tertiary": "#0f1d25",
+              "on-surface-variant": "#454652",
+              "on-secondary-fixed": "#00105c",
+              "background": "#f8f9fa",
+              "error": "#ba1a1a",
+              "tertiary-fixed": "#d6e5ef",
+              "surface-container-highest": "#e1e3e4",
+              "tertiary-container": "#24323a",
+              "secondary-container": "#8596ff",
+              "secondary-fixed": "#dee0ff",
+              "primary-fixed": "#e0e0ff",
+              "surface-bright": "#f8f9fa",
+              "on-background": "#191c1d",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed-dim": "#bdc2ff",
+              "on-tertiary": "#ffffff",
+              "on-secondary-container": "#11278e",
+              "on-primary": "#ffffff",
+              "on-secondary-fixed-variant": "#293ca0",
+              "on-tertiary-fixed": "#0f1d25"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md border-b border-slate-200/50 flex items-center justify-between px-6 py-3 shadow-sm">
+<div class="flex items-center gap-4">
+<span class="text-xl font-bold text-indigo-900 tracking-tight">Reserva Académica</span>
+</div>
+<div class="flex-1 max-w-md mx-8">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-slate-400">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary/20" placeholder="Buscar espacios..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-slate-100 transition-colors text-slate-500">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-slate-100 transition-colors text-slate-500">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-primary-container flex items-center justify-center text-xs text-on-primary-container font-bold">
+                AD
+            </div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-64 pt-20 bg-slate-50 flex flex-col gap-2">
+<div class="px-6 py-4 mb-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined">account_balance</span>
+</div>
+<div>
+<h2 class="text-sm font-bold text-indigo-800 leading-tight">Gestión Académica</h2>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest">Modo Administrador</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-2 flex flex-col gap-1">
+<a class="text-slate-600 px-4 py-3 mx-2 flex items-center gap-3 hover:bg-slate-200/50 transition-all rounded-lg text-sm font-medium" href="#">
+<span class="material-symbols-outlined">dashboard</span> Panel Control
+            </a>
+<!-- Active State: Mis Reservas as it relates to schedule management -->
+<a class="bg-indigo-100/50 text-indigo-700 rounded-lg px-4 py-3 mx-2 flex items-center gap-3 transition-all text-sm font-semibold" href="#">
+<span class="material-symbols-outlined">calendar_month</span> Mis Reservas
+            </a>
+<a class="text-slate-600 px-4 py-3 mx-2 flex items-center gap-3 hover:bg-slate-200/50 transition-all rounded-lg text-sm font-medium" href="#">
+<span class="material-symbols-outlined">library_books</span> Catálogo
+            </a>
+<a class="text-slate-600 px-4 py-3 mx-2 flex items-center gap-3 hover:bg-slate-200/50 transition-all rounded-lg text-sm font-medium" href="#">
+<span class="material-symbols-outlined">group</span> Usuarios
+            </a>
+<a class="text-slate-600 px-4 py-3 mx-2 flex items-center gap-3 hover:bg-slate-200/50 transition-all rounded-lg text-sm font-medium" href="#">
+<span class="material-symbols-outlined">analytics</span> Reportes
+            </a>
+</nav>
+<div class="p-4 mt-auto border-t border-slate-200/50">
+<a class="text-slate-600 px-4 py-2 flex items-center gap-3 hover:bg-slate-200/50 rounded-lg text-sm font-medium mb-1" href="#">
+<span class="material-symbols-outlined">settings</span> Configuración
+            </a>
+<a class="text-error px-4 py-2 flex items-center gap-3 hover:bg-error-container/20 rounded-lg text-sm font-medium" href="#">
+<span class="material-symbols-outlined">logout</span> Cerrar Sesión
+            </a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 px-10 pb-12 min-h-screen bg-surface">
+<!-- Header Section -->
+<div class="flex items-end justify-between mb-12">
+<div>
+<span class="text-xs font-bold tracking-[0.2em] text-primary/60 uppercase block mb-2">Administración</span>
+<h1 class="text-5xl font-extrabold text-primary tracking-tight">Gestión de Horarios</h1>
+<p class="mt-4 text-on-surface-variant max-w-xl text-lg leading-relaxed">
+                    Organiza y supervisa la disponibilidad de aulas, laboratorios y auditorios para el ciclo académico actual.
+                </p>
+</div>
+<!-- CTA Button: Opens Modal -->
+<button class="group flex items-center gap-3 bg-gradient-to-br from-primary to-primary-container text-white px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1" onclick="document.getElementById('schedule-modal').classList.remove('hidden')">
+<span class="material-symbols-outlined">add</span>
+<span class="text-sm font-bold uppercase tracking-wider">Crear Nuevo Horario</span>
+</button>
+</div>
+<!-- Bento Grid Layout for Management -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Empty State / Table Container -->
+<div class="col-span-12 lg:col-span-8">
+<div class="bg-surface-container-lowest rounded-xl p-8 shadow-sm relative overflow-hidden">
+<div class="flex items-center justify-between mb-8">
+<h3 class="text-xl font-bold text-primary">Listado de Horarios</h3>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-[10px] font-bold uppercase text-on-surface-variant tracking-wider">Total: 0</span>
+</div>
+</div>
+<!-- Empty Table State -->
+<div class="border-2 border-dashed border-outline-variant/30 rounded-xl py-20 flex flex-col items-center justify-center text-center">
+<div class="w-20 h-20 bg-surface-container rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-4xl text-slate-300">calendar_today</span>
+</div>
+<h4 class="text-lg font-semibold text-on-surface mb-2">No hay horarios programados</h4>
+<p class="text-on-surface-variant max-w-xs mx-auto text-sm leading-relaxed">
+                            Aún no se han definido franjas horarias. Comienza creando una nueva asignación para los espacios académicos.
+                        </p>
+</div>
+<!-- Table Skeleton (Hidden) -->
+<table class="hidden w-full text-left">
+<thead>
+<tr class="text-[10px] font-bold uppercase tracking-widest text-slate-400 border-b border-surface-container">
+<th class="pb-4 px-4">Espacio</th>
+<th class="pb-4 px-4">Fecha</th>
+<th class="pb-4 px-4">Rango</th>
+<th class="pb-4 px-4 text-right">Acciones</th>
+</tr>
+</thead>
+<tbody>
+<!-- Rows would go here -->
+</tbody>
+</table>
+</div>
+</div>
+<!-- Side Cards / Stats -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-8">
+<!-- Filter Card -->
+<div class="bg-surface-container-low rounded-xl p-6">
+<h4 class="text-xs font-bold uppercase tracking-widest text-primary/60 mb-6">Filtros Rápidos</h4>
+<div class="space-y-4">
+<div class="p-4 bg-surface-container-lowest rounded-lg hover:bg-white transition-colors cursor-pointer flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-indigo-500">meeting_room</span>
+<span class="text-sm font-medium">Aulas Teóricas</span>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+<div class="p-4 bg-surface-container-lowest rounded-lg hover:bg-white transition-colors cursor-pointer flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-emerald-500">biotech</span>
+<span class="text-sm font-medium">Laboratorios</span>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+<div class="p-4 bg-surface-container-lowest rounded-lg hover:bg-white transition-colors cursor-pointer flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-amber-500">theater_comedy</span>
+<span class="text-sm font-medium">Auditorios</span>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Helper Card -->
+<div class="bg-indigo-900 rounded-xl p-8 text-white relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-9xl">info</span>
+</div>
+<h4 class="text-lg font-bold mb-3 relative z-10">Optimización de Espacios</h4>
+<p class="text-indigo-200 text-sm leading-relaxed mb-6 relative z-10">
+                        El sistema sugiere automáticamente los horarios con menor conflicto basado en la asistencia histórica.
+                    </p>
+<button class="w-full py-3 bg-white/10 hover:bg-white/20 rounded-lg text-xs font-bold uppercase tracking-widest transition-colors relative z-10">
+                        Ver Reporte
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Modal Overlay (Simulated Bootstrap Modal) -->
+<div class="hidden fixed inset-0 z-[100] flex items-center justify-center px-4" id="schedule-modal">
+<!-- Backdrop -->
+<div class="absolute inset-0 bg-primary/40 backdrop-blur-sm" onclick="document.getElementById('schedule-modal').classList.add('hidden')"></div>
+<!-- Modal Content -->
+<div class="relative bg-surface rounded-xl shadow-2xl w-full max-w-xl overflow-hidden transform transition-all">
+<div class="px-8 py-6 border-b border-surface-container flex items-center justify-between bg-white">
+<h3 class="text-2xl font-bold text-primary">Crear Horario</h3>
+<button class="p-2 hover:bg-slate-100 rounded-full transition-colors" onclick="document.getElementById('schedule-modal').classList.add('hidden')">
+<span class="material-symbols-outlined text-slate-400">close</span>
+</button>
+</div>
+<div class="p-8">
+<form class="space-y-6">
+<!-- Space Type -->
+<div>
+<label class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-2">Tipo de Espacio</label>
+<select class="w-full bg-surface-container-low border-none rounded-lg p-4 text-sm focus:ring-2 focus:ring-primary focus:bg-white transition-all appearance-none cursor-pointer">
+<option value="">Seleccione un tipo...</option>
+<option>Aula de Clase</option>
+<option>Laboratorio de Computación</option>
+<option>Laboratorio de Ciencias</option>
+<option>Auditorio Principal</option>
+<option>Sala de Juntas</option>
+</select>
+</div>
+<!-- Date Selection -->
+<div>
+<label class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-2">Fecha de Reserva</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border-none rounded-lg p-4 text-sm focus:ring-2 focus:ring-primary focus:bg-white transition-all" type="date"/>
+</div>
+</div>
+<!-- Time Range -->
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-2">Hora Inicio</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg p-4 text-sm focus:ring-2 focus:ring-primary focus:bg-white transition-all" type="time"/>
+</div>
+<div>
+<label class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-2">Hora Fin</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg p-4 text-sm focus:ring-2 focus:ring-primary focus:bg-white transition-all" type="time"/>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="flex items-center gap-4 pt-4">
+<button class="flex-1 py-4 text-sm font-bold uppercase tracking-widest text-primary hover:bg-primary/5 rounded-lg transition-colors border border-transparent" onclick="document.getElementById('schedule-modal').classList.add('hidden')" type="button">
+                            Cancelar
+                        </button>
+<button class="flex-2 w-full py-4 bg-gradient-to-r from-primary to-primary-container text-white text-sm font-bold uppercase tracking-widest rounded-lg shadow-md hover:shadow-lg transition-all" type="submit">
+                            Guardar Horario
+                        </button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</body></html>

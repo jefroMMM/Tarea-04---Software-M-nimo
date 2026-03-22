@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Recuperar Contraseña | AcademiaAtelier</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-container": "#8596ff",
+              "secondary": "#4355b9",
+              "on-tertiary": "#ffffff",
+              "on-error": "#ffffff",
+              "secondary-fixed": "#dee0ff",
+              "on-secondary-fixed": "#00105c",
+              "tertiary-fixed-dim": "#bac9d3",
+              "outline-variant": "#c6c5d4",
+              "on-tertiary-fixed-variant": "#3b4951",
+              "on-secondary-container": "#11278e",
+              "primary": "#000666",
+              "on-surface-variant": "#454652",
+              "surface-container": "#edeeef",
+              "background": "#f8f9fa",
+              "surface": "#f8f9fa",
+              "primary-fixed": "#e0e0ff",
+              "on-tertiary-fixed": "#0f1d25",
+              "inverse-on-surface": "#f0f1f2",
+              "inverse-primary": "#bdc2ff",
+              "primary-container": "#1a237e",
+              "on-error-container": "#93000a",
+              "surface-container-lowest": "#ffffff",
+              "surface-dim": "#d9dadb",
+              "error-container": "#ffdad6",
+              "outline": "#767683",
+              "on-tertiary-container": "#8b9aa4",
+              "surface-container-highest": "#e1e3e4",
+              "on-surface": "#191c1d",
+              "tertiary-container": "#24323a",
+              "on-secondary": "#ffffff",
+              "surface-container-low": "#f3f4f5",
+              "primary-fixed-dim": "#bdc2ff",
+              "on-primary-fixed-variant": "#343d96",
+              "tertiary-fixed": "#d6e5ef",
+              "error": "#ba1a1a",
+              "surface-container-high": "#e7e8e9",
+              "on-primary": "#ffffff",
+              "tertiary": "#0f1d25",
+              "on-secondary-fixed-variant": "#293ca0",
+              "secondary-fixed-dim": "#bac3ff",
+              "surface-variant": "#e1e3e4",
+              "on-background": "#191c1d",
+              "on-primary-fixed": "#000767",
+              "inverse-surface": "#2e3132",
+              "surface-bright": "#f8f9fa",
+              "on-primary-container": "#8690ee",
+              "surface-tint": "#4c56af"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      .intellectual-gradient {
+        background: linear-gradient(135deg, #000666 0%, #1a237e 100%);
+      }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex items-center justify-center p-6">
+<main class="w-full max-w-[440px] flex flex-col items-center">
+<!-- Logo/Header Placeholder based on Brand Anchor text -->
+<div class="mb-12 text-center">
+<p class="text-on-surface-variant text-sm font-medium tracking-wide">GESTIÓN ACADÉMICA</p>
+</div>
+<!-- Form Card using Surface Hierarchy -->
+<div class="w-full bg-surface-container-lowest p-10 rounded-xl shadow-sm shadow-primary/5">
+<div class="mb-8">
+<h2 class="text-xl font-bold text-primary tracking-tight mb-3">Recuperar acceso</h2>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                    Introduce tu correo electrónico institucional. Te enviaremos las instrucciones para restablecer tu contraseña.
+                </p>
+</div>
+<form class="space-y-6">
+<!-- Input Field: Minimalist Style -->
+<div class="space-y-2">
+<label class="block text-[10px] font-bold uppercase tracking-[0.05em] text-outline" for="email">
+                        Correo Institucional
+                    </label>
+<div class="relative group">
+<input class="w-full bg-surface-container-low border-none rounded-md px-4 py-3 text-on-surface focus:ring-0 focus:ring-offset-0 transition-all border-b-2 border-transparent focus:border-primary placeholder:text-outline-variant text-sm" id="email" placeholder="usuario@academia.edu" required="" type="email"/>
+</div>
+</div>
+<!-- Primary Button: Gradient Fill -->
+<button class="w-full intellectual-gradient text-white font-bold py-3.5 rounded-md text-sm transition-opacity hover:opacity-90 active:scale-[0.98] duration-200" type="submit">
+                    Enviar instrucciones
+                </button>
+</form>
+<!-- Footer Link: Tertiary Style -->
+<div class="mt-10 flex justify-center">
+<a class="inline-flex items-center gap-2 text-primary text-xs font-bold uppercase tracking-widest hover:text-secondary-container transition-colors duration-300" href="#">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+                    Volver al login
+                </a>
+</div>
+</div>
+<!-- Semantic Footer / Meta Information -->
+<footer class="mt-12 text-center">
+<p class="text-[10px] text-outline-variant font-medium uppercase tracking-[0.1em]">
+                © 2024 AcademiaAtelier • Sistema de Seguridad
+            </p>
+</footer>
+</main>
+</body></html>

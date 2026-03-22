@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!-- Bootstrap 5 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-fixed-dim": "#bac3ff",
+              "surface-tint": "#4c56af",
+              "outline": "#767683",
+              "surface-container-low": "#f3f4f5",
+              "primary": "#000666",
+              "outline-variant": "#c6c5d4",
+              "inverse-primary": "#bdc2ff",
+              "on-surface": "#191c1d",
+              "surface-dim": "#d9dadb",
+              "on-primary-fixed-variant": "#343d96",
+              "primary-container": "#1a237e",
+              "inverse-surface": "#2e3132",
+              "on-tertiary-container": "#8b9aa4",
+              "surface-container": "#edeeef",
+              "on-error-container": "#93000a",
+              "surface-container-high": "#e7e8e9",
+              "error-container": "#ffdad6",
+              "secondary": "#4355b9",
+              "on-primary-fixed": "#000767",
+              "on-tertiary-fixed-variant": "#3b4951",
+              "tertiary-fixed-dim": "#bac9d3",
+              "surface": "#f8f9fa",
+              "on-primary-container": "#8690ee",
+              "inverse-on-surface": "#f0f1f2",
+              "on-secondary": "#ffffff",
+              "surface-variant": "#e1e3e4",
+              "on-error": "#ffffff",
+              "tertiary": "#0f1d25",
+              "on-surface-variant": "#454652",
+              "on-secondary-fixed": "#00105c",
+              "background": "#f8f9fa",
+              "error": "#ba1a1a",
+              "tertiary-fixed": "#d6e5ef",
+              "surface-container-highest": "#e1e3e4",
+              "tertiary-container": "#24323a",
+              "secondary-container": "#8596ff",
+              "secondary-fixed": "#dee0ff",
+              "primary-fixed": "#e0e0ff",
+              "surface-bright": "#f8f9fa",
+              "on-background": "#191c1d",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed-dim": "#bdc2ff",
+              "on-tertiary": "#ffffff",
+              "on-secondary-container": "#11278e",
+              "on-primary": "#ffffff",
+              "on-secondary-fixed-variant": "#293ca0",
+              "on-tertiary-fixed": "#0f1d25"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+        }
+        body { font-family: 'Inter', sans-serif; }
+        /* Reset bootstrap modal backdrop to play nice with tailwind z-index if needed */
+        .modal-backdrop { z-index: 1040; }
+        .modal { z-index: 1050; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-[40] bg-white/70 backdrop-blur-md border-b border-slate-200/50 flex items-center justify-between px-6 py-3 shadow-sm">
+<div class="flex items-center gap-4">
+<span class="text-xl font-bold text-indigo-900 tracking-tight">Reserva Académica</span>
+</div>
+<div class="flex-1 max-w-md mx-8">
+<div class="relative flex items-center">
+<i class="bi bi-search absolute left-3 text-slate-400"></i>
+<input class="w-full bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary/20" placeholder="Buscar espacios..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-slate-100 transition-colors text-slate-500">
+<i class="bi bi-bell"></i>
+</button>
+<button class="p-2 rounded-full hover:bg-slate-100 transition-colors text-slate-500">
+<i class="bi bi-question-circle"></i>
+</button>
+<div class="h-8 w-8 rounded-full bg-primary-container flex items-center justify-center text-xs text-on-primary-container font-bold">
+            AD
+        </div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-64 pt-20 bg-slate-50 flex flex-col gap-2 z-[30]">
+<div class="px-6 py-4 mb-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white">
+<i class="bi bi-bank"></i>
+</div>
+<div>
+<h2 class="text-sm font-bold text-indigo-800 leading-tight">Gestión Académica</h2>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest">Modo Administrador</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-2 flex flex-col gap-1">
+<a class="text-slate-600 px-4 py-3 mx-2 flex items-center gap-3 hover:bg-slate-200/50 transition-all rounded-lg text-sm font-medium" href="#">
+<i class="bi bi-speedometer2"></i> Panel Control
+        </a>
+<a class="bg-indigo-100/50 text-indigo-700 rounded-lg px-4 py-3 mx-2 flex items-center gap-3 transition-all text-sm font-semibold" href="#">
+<i class="bi bi-calendar3"></i> Mis Reservas
+        </a>
+<a class="text-slate-600 px-4 py-3 mx-2 flex items-center gap-3 hover:bg-slate-200/50 transition-all rounded-lg text-sm font-medium" href="#">
+<i class="bi bi-book"></i> Catálogo
+        </a>
+<a class="text-slate-600 px-4 py-3 mx-2 flex items-center gap-3 hover:bg-slate-200/50 transition-all rounded-lg text-sm font-medium" href="#">
+<i class="bi bi-people"></i> Usuarios
+        </a>
+<a class="text-slate-600 px-4 py-3 mx-2 flex items-center gap-3 hover:bg-slate-200/50 transition-all rounded-lg text-sm font-medium" href="#">
+<i class="bi bi-bar-chart"></i> Reportes
+        </a>
+</nav>
+<div class="p-4 mt-auto border-t border-slate-200/50">
+<a class="text-slate-600 px-4 py-2 flex items-center gap-3 hover:bg-slate-200/50 rounded-lg text-sm font-medium mb-1" href="#">
+<i class="bi bi-gear"></i> Configuración
+        </a>
+<a class="text-error px-4 py-2 flex items-center gap-3 hover:bg-error-container/20 rounded-lg text-sm font-medium" href="#">
+<i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+        </a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 px-10 pb-12 min-h-screen bg-surface">
+<!-- Header Section -->
+<div class="flex items-end justify-between mb-12">
+<div>
+<span class="text-xs font-bold tracking-[0.2em] text-primary/60 uppercase block mb-2">Administración</span>
+<h1 class="text-5xl font-extrabold text-primary tracking-tight">Gestión de Horarios</h1>
+<p class="mt-4 text-on-surface-variant max-w-xl text-lg leading-relaxed">
+                Organiza y supervisa la disponibilidad de aulas, laboratorios y auditorios para el ciclo académico actual.
+            </p>
+</div>
+<!-- CTA Button: Opens Bootstrap Modal -->
+<button class="group flex items-center gap-3 bg-gradient-to-br from-primary to-primary-container text-white px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1" data-bs-target="#scheduleModal" data-bs-toggle="modal">
+<i class="bi bi-plus-lg"></i>
+<span class="text-sm font-bold uppercase tracking-wider">Crear Nuevo Horario</span>
+</button>
+</div>
+<!-- Bento Grid Layout for Management -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Empty State / Table Container -->
+<div class="col-span-12 lg:col-span-8">
+<div class="bg-surface-container-lowest rounded-xl p-8 shadow-sm relative overflow-hidden">
+<div class="flex items-center justify-between mb-8">
+<h3 class="text-xl font-bold text-primary">Listado de Horarios</h3>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-[10px] font-bold uppercase text-on-surface-variant tracking-wider">Total: 0</span>
+</div>
+</div>
+<!-- Empty Table State -->
+<div class="border-2 border-dashed border-outline-variant/30 rounded-xl py-20 flex flex-col items-center justify-center text-center">
+<div class="w-20 h-20 bg-surface-container rounded-full flex items-center justify-center mb-6">
+<i class="bi bi-calendar-x text-4xl text-slate-300"></i>
+</div>
+<h4 class="text-lg font-semibold text-on-surface mb-2">No hay horarios programados</h4>
+<p class="text-on-surface-variant max-w-xs mx-auto text-sm leading-relaxed">
+                        Aún no se han definido franjas horarias. Comienza creando una nueva asignación para los espacios académicos.
+                    </p>
+</div>
+</div>
+</div>
+<!-- Side Cards / Stats -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-8">
+<!-- Filter Card -->
+<div class="bg-surface-container-low rounded-xl p-6">
+<h4 class="text-xs font-bold uppercase tracking-widest text-primary/60 mb-6">Filtros Rápidos</h4>
+<div class="space-y-4">
+<div class="p-4 bg-surface-container-lowest rounded-lg hover:bg-white transition-colors cursor-pointer flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<i class="bi bi-door-closed text-indigo-500"></i>
+<span class="text-sm font-medium">Aulas Teóricas</span>
+</div>
+<i class="bi bi-chevron-right text-slate-300 group-hover:translate-x-1 transition-transform"></i>
+</div>
+<div class="p-4 bg-surface-container-lowest rounded-lg hover:bg-white transition-colors cursor-pointer flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<i class="bi bi-flask text-emerald-500"></i>
+<span class="text-sm font-medium">Laboratorios</span>
+</div>
+<i class="bi bi-chevron-right text-slate-300 group-hover:translate-x-1 transition-transform"></i>
+</div>
+<div class="p-4 bg-surface-container-lowest rounded-lg hover:bg-white transition-colors cursor-pointer flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<i class="bi bi-mic text-amber-500"></i>
+<span class="text-sm font-medium">Auditorios</span>
+</div>
+<i class="bi bi-chevron-right text-slate-300 group-hover:translate-x-1 transition-transform"></i>
+</div>
+</div>
+</div>
+<!-- Helper Card -->
+<div class="bg-indigo-900 rounded-xl p-8 text-white relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<i class="bi bi-info-circle text-[8rem]"></i>
+</div>
+<h4 class="text-lg font-bold mb-3 relative z-10">Optimización de Espacios</h4>
+<p class="text-indigo-200 text-sm leading-relaxed mb-6 relative z-10">
+                    El sistema sugiere automáticamente los horarios con menor conflicto basado en la asistencia histórica.
+                </p>
+<button class="w-full py-3 bg-white/10 hover:bg-white/20 rounded-lg text-xs font-bold uppercase tracking-widest transition-colors relative z-10">
+                    Ver Reporte
+                </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bootstrap 5 Modal -->
+<div aria-labelledby="scheduleModalLabel" aria-modal="true" class="modal fade show" id="scheduleModal" role="dialog" style="display: block;" tabindex="-1">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content border-0 shadow-2xl rounded-xl overflow-hidden">
+<div class="modal-header border-bottom px-4 py-3 bg-white">
+<h5 class="modal-title font-bold text-primary text-xl" id="scheduleModalLabel">Crear Nuevo Horario</h5>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body p-4 bg-surface">
+<form class="row g-3" id="scheduleForm">
+<div class="col-12">
+<label class="form-label text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1" for="tipoEspacio">Tipo de Espacio</label>
+<select class="form-select bg-surface-container-low border-0 rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary transition-all" id="tipoEspacio">
+<option disabled="" selected="" value="">Seleccione un tipo...</option>
+<option>Salón</option>
+<option>Laboratorio</option>
+<option>Auditorio</option>
+</select>
+</div>
+<div class="col-12">
+<label class="form-label text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1" for="fecha">Fecha</label>
+<input class="form-control bg-surface-container-low border-0 rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary transition-all" id="fecha" type="date"/>
+</div>
+<div class="col-md-6">
+<label class="form-label text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1" for="horaInicio">Hora de Inicio</label>
+<input class="form-control bg-surface-container-low border-0 rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary transition-all" id="horaInicio" type="time"/>
+</div>
+<div class="col-md-6">
+<label class="form-label text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1" for="horaFin">Hora de Fin</label>
+<input class="form-control bg-surface-container-low border-0 rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary transition-all" id="horaFin" type="time"/>
+</div>
+<div class="col-12">
+<label class="form-label text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1" for="capacidad">Capacidad</label>
+<input class="form-control bg-surface-container-low border-0 rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary transition-all" id="capacidad" placeholder="Ej: 40" type="number"/>
+</div>
+</form>
+</div>
+<div class="modal-footer border-top p-4 bg-white flex items-center gap-3">
+<button class="btn flex-1 py-3 text-sm font-bold uppercase tracking-widest text-slate-500 hover:bg-slate-100 rounded-lg transition-colors border-0" data-bs-dismiss="modal" type="button">Cancelar</button>
+<button class="btn flex-1 py-3 bg-gradient-to-r from-primary to-primary-container text-white text-sm font-bold uppercase tracking-widest rounded-lg shadow-md hover:shadow-lg transition-all border-0" form="scheduleForm" type="submit">Crear Horario</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Modal Backdrop for "open by default" state -->
+<div class="modal-backdrop fade show"></div>
+<!-- Bootstrap 5 JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body></html>
