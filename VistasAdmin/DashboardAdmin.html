@@ -1,81 +1,36 @@
 <!DOCTYPE html>
-
-<html class="light" lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Reserva Académica - Panel de Administrador</title>
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Material Symbols -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Google Fonts: Inter -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              "secondary-fixed-dim": "#bac3ff",
-              "surface-tint": "#4c56af",
-              "outline": "#767683",
-              "surface-container-low": "#f3f4f5",
-              "primary": "#000666",
-              "outline-variant": "#c6c5d4",
-              "inverse-primary": "#bdc2ff",
-              "on-surface": "#191c1d",
-              "surface-dim": "#d9dadb",
-              "on-primary-fixed-variant": "#343d96",
-              "primary-container": "#1a237e",
-              "inverse-surface": "#2e3132",
-              "on-tertiary-container": "#8b9aa4",
-              "surface-container": "#edeeef",
-              "on-error-container": "#93000a",
-              "surface-container-high": "#e7e8e9",
-              "error-container": "#ffdad6",
-              "secondary": "#4355b9",
-              "on-primary-fixed": "#000767",
-              "on-tertiary-fixed-variant": "#3b4951",
-              "tertiary-fixed-dim": "#bac9d3",
-              "surface": "#f8f9fa",
-              "on-primary-container": "#8690ee",
-              "inverse-on-surface": "#f0f1f2",
-              "on-secondary": "#ffffff",
-              "surface-variant": "#e1e3e4",
-              "on-error": "#ffffff",
-              "tertiary": "#0f1d25",
-              "on-surface-variant": "#454652",
-              "on-secondary-fixed": "#00105c",
-              "background": "#f8f9fa",
-              "error": "#ba1a1a",
-              "tertiary-fixed": "#d6e5ef",
-              "surface-container-highest": "#e1e3e4",
-              "tertiary-container": "#24323a",
-              "secondary-container": "#8596ff",
-              "secondary-fixed": "#dee0ff",
-              "primary-fixed": "#e0e0ff",
-              "surface-bright": "#f8f9fa",
-              "on-background": "#191c1d",
-              "surface-container-lowest": "#ffffff",
-              "primary-fixed-dim": "#bdc2ff",
-              "on-tertiary": "#ffffff",
-              "on-secondary-container": "#11278e",
-              "on-primary": "#ffffff",
-              "on-secondary-fixed-variant": "#293ca0",
-              "on-tertiary-fixed": "#0f1d25"
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Reserva Académica - Panel de Administrador</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#000666",
+                        "surface": "#f8f9fa",
+                        "on-surface": "#191c1d",
+                        "on-surface-variant": "#454652",
+                        "outline-variant": "#c6c5d4",
+                        "surface-container-low": "#f3f4f5",
+                        "surface-container-lowest": "#ffffff",
+                    },
+                    fontFamily: {
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
             },
-            fontFamily: {
-              "headline": ["Inter", "sans-serif"],
-              "body": ["Inter", "sans-serif"],
-              "label": ["Inter", "sans-serif"]
-            },
-            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
-          },
-        },
-      }
+        }
     </script>
-<style>
+    <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
             vertical-align: middle;
@@ -84,175 +39,407 @@
     </style>
 </head>
 <body class="bg-surface text-on-surface min-h-screen">
-<!-- TopNavBar (JSON Mapping) -->
+
 <nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md border-b border-slate-200/50 shadow-sm flex items-center justify-between px-6 py-3 font-sans antialiased tracking-tight">
-<div class="flex items-center gap-4">
-<span class="text-xl font-bold text-indigo-900">Reserva Académica</span>
-<div class="hidden md:flex ml-8 items-center bg-surface-container-low px-4 py-1.5 rounded-full">
-<span class="material-symbols-outlined text-slate-400 text-lg mr-2">search</span>
-<input class="bg-transparent border-none focus:ring-0 text-sm w-64 placeholder-slate-400" placeholder="Buscar reservas..." type="text"/>
-</div>
-</div>
-<div class="flex items-center gap-3">
-<button class="p-2 text-indigo-900 hover:bg-slate-100 rounded-full transition-colors">
-<span class="material-symbols-outlined">notifications</span>
-</button>
-<button class="p-2 text-indigo-900 hover:bg-slate-100 rounded-full transition-colors">
-<span class="material-symbols-outlined">help</span>
-</button>
-<div class="h-8 w-8 bg-primary rounded-full ml-2 flex items-center justify-center text-white text-xs font-bold overflow-hidden">
-<img alt="Avatar de usuario" class="w-full h-full object-cover" data-alt="Official administrator profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZ8kvYBW7BFaucaRiy_g8F2BxFvNqx0e7uqB8KONkF6QxWXJUlrwa9KYzT9ynJxThzc7Km_UvpNLje8bWZemo9RIizyatIZfqDb8zfryx7n7hzW-dz5QRG67RsJEGYl3_beU2VXz5I5R70h_LzWFg4HBWViQb0O5BUs6x0TxrT02QPJEM_dV-I55dE46atKpNQgN1E6OROJFAAqiEtdC6MUX8gwo8JRBzZF5vqQsMal19gcEb8clDtMWdWpUN60qxL5gnOVY4kBQ"/>
-</div>
-</div>
+    <div class="flex items-center gap-4">
+        <span class="text-xl font-bold text-indigo-900">Reserva Académica</span>
+    </div>
+    <a href="LoginGeneral.html" class="text-slate-600 hover:text-red-600 flex items-center gap-2 font-medium text-sm">
+        <span class="material-symbols-outlined">logout</span>
+        Cerrar Sesión
+    </a>
 </nav>
-<!-- SideNavBar (JSON Mapping) -->
+
 <aside class="fixed left-0 top-0 h-screen w-64 pt-20 bg-slate-50 flex flex-col gap-2 z-40">
-<div class="px-6 py-4 flex flex-col">
-<span class="text-indigo-800 text-sm font-semibold tracking-wider uppercase">Gestión Académica</span>
-<span class="text-slate-500 text-xs font-medium">Modo Administrador</span>
-</div>
-<div class="flex flex-col gap-1 mt-2">
-<!-- Active Tab: Panel Control -->
-<a class="bg-indigo-100/50 text-indigo-700 rounded-lg px-4 py-3 mx-2 flex items-center gap-3 font-medium text-sm transition-all duration-300" href="#">
-<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-                Panel Control
-            </a>
-<a class="text-slate-600 hover:bg-slate-200/50 px-4 py-3 mx-2 rounded-lg flex items-center gap-3 font-medium text-sm transition-all duration-300" href="#">
-<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
-                Mis Reservas
-            </a>
-<a class="text-slate-600 hover:bg-slate-200/50 px-4 py-3 mx-2 rounded-lg flex items-center gap-3 font-medium text-sm transition-all duration-300" href="#">
-<span class="material-symbols-outlined" data-icon="library_books">library_books</span>
-                Catálogo
-            </a>
-<a class="text-slate-600 hover:bg-slate-200/50 px-4 py-3 mx-2 rounded-lg flex items-center gap-3 font-medium text-sm transition-all duration-300" href="#">
-<span class="material-symbols-outlined" data-icon="group">group</span>
-                Usuarios
-            </a>
-<a class="text-slate-600 hover:bg-slate-200/50 px-4 py-3 mx-2 rounded-lg flex items-center gap-3 font-medium text-sm transition-all duration-300" href="#">
-<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
-                Reportes
-            </a>
-</div>
-<div class="px-4 py-6">
-<button class="w-full bg-primary text-white py-3 rounded-xl font-bold text-sm shadow-md flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
-<span class="material-symbols-outlined text-lg">add</span>
-                Nueva Reserva
-            </button>
-</div>
-<div class="mt-auto mb-6 flex flex-col gap-1">
-<a class="text-slate-600 hover:bg-slate-200/50 px-4 py-3 mx-2 rounded-lg flex items-center gap-3 font-medium text-sm transition-all duration-300" href="#">
-<span class="material-symbols-outlined" data-icon="settings">settings</span>
-                Configuración
-            </a>
-<a class="text-slate-600 hover:bg-slate-200/50 px-4 py-3 mx-2 rounded-lg flex items-center gap-3 font-medium text-sm transition-all duration-300" href="#">
-<span class="material-symbols-outlined" data-icon="logout">logout</span>
-                Cerrar Sesión
-            </a>
-</div>
+    <div class="px-6 py-4 flex flex-col">
+        <span class="text-indigo-800 text-sm font-semibold tracking-wider uppercase">Gestión Académica</span>
+        <span class="text-slate-500 text-xs font-medium">Modo Administrador</span>
+    </div>
+    
+    <div class="flex flex-col gap-1 mt-2">
+        <a class="dashboard-link bg-indigo-100/50 text-indigo-700 rounded-lg px-4 py-3 mx-2 flex items-center gap-3 font-medium text-sm transition-all duration-300 cursor-pointer" onclick="mostrarSeccion('dashboard')">
+            <span class="material-symbols-outlined">dashboard</span>
+            Dashboard
+        </a>
+        
+        <a class="horarios-link text-slate-600 hover:bg-slate-200/50 px-4 py-3 mx-2 rounded-lg flex items-center gap-3 font-medium text-sm transition-all duration-300 cursor-pointer" onclick="mostrarSeccion('horarios')">
+            <span class="material-symbols-outlined">schedule</span>
+            Horarios
+        </a>
+
+        <a class="usuarios-link text-slate-600 hover:bg-slate-200/50 px-4 py-3 mx-2 rounded-lg flex items-center gap-3 font-medium text-sm transition-all duration-300 cursor-pointer" onclick="mostrarSeccion('usuarios')">
+            <span class="material-symbols-outlined">group</span>
+            Usuarios
+        </a>
+    </div>
+
+    <div class="mt-auto mb-6 flex flex-col gap-1">
+        <a class="text-slate-600 hover:bg-slate-200/50 px-4 py-3 mx-2 rounded-lg flex items-center gap-3 font-medium text-sm transition-all duration-300" href="../VistasUniversales/LoginGeneral.html">
+            <span class="material-symbols-outlined">logout</span>
+            Cerrar Sesión
+        </a>
+    </div>
 </aside>
-<!-- Main Content Canvas -->
+
 <main class="pl-64 pt-20 min-h-screen">
-<div class="p-10 max-w-7xl mx-auto">
-<!-- Editorial Header Section -->
-<header class="mb-12">
-<h1 class="text-4xl font-extrabold text-primary tracking-tight mb-2">Panel de Administrador</h1>
-<p class="text-on-surface-variant text-lg">Resumen del estado actual del sistema académico.</p>
-</header>
-<!-- Bento-Style Stats Grid -->
-<section class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-<!-- Total Reservations Card -->
-<div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/10 shadow-sm transition-all hover:translate-y-[-4px]">
-<div class="flex items-center justify-between mb-4">
-<span class="text-on-surface-variant text-xs font-bold tracking-widest uppercase">Total Reservas</span>
-<div class="p-2 bg-indigo-50 text-indigo-700 rounded-lg">
-<span class="material-symbols-outlined">event_available</span>
-</div>
-</div>
-<div class="flex items-baseline gap-2">
-<span class="text-5xl font-extrabold text-primary tracking-tight">0</span>
-<span class="text-sm text-slate-400 font-medium">acumuladas</span>
-</div>
-<div class="mt-6 h-1 w-full bg-surface-container-low rounded-full overflow-hidden">
-<div class="bg-primary h-full w-0"></div>
-</div>
-</div>
-<!-- Active Users Card -->
-<div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/10 shadow-sm transition-all hover:translate-y-[-4px]">
-<div class="flex items-center justify-between mb-4">
-<span class="text-on-surface-variant text-xs font-bold tracking-widest uppercase">Usuarios Activos</span>
-<div class="p-2 bg-indigo-50 text-indigo-700 rounded-lg">
-<span class="material-symbols-outlined">person_search</span>
-</div>
-</div>
-<div class="flex items-baseline gap-2">
-<span class="text-5xl font-extrabold text-primary tracking-tight">0</span>
-<span class="text-sm text-slate-400 font-medium">en línea</span>
-</div>
-<div class="mt-6 h-1 w-full bg-surface-container-low rounded-full overflow-hidden">
-<div class="bg-primary h-full w-0"></div>
-</div>
-</div>
-<!-- Available Spaces Card -->
-<div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/10 shadow-sm transition-all hover:translate-y-[-4px]">
-<div class="flex items-center justify-between mb-4">
-<span class="text-on-surface-variant text-xs font-bold tracking-widest uppercase">Espacios Disponibles</span>
-<div class="p-2 bg-indigo-50 text-indigo-700 rounded-lg">
-<span class="material-symbols-outlined">meeting_room</span>
-</div>
-</div>
-<div class="flex items-baseline gap-2">
-<span class="text-5xl font-extrabold text-primary tracking-tight">0</span>
-<span class="text-sm text-slate-400 font-medium">disponibles</span>
-</div>
-<div class="mt-6 h-1 w-full bg-surface-container-low rounded-full overflow-hidden">
-<div class="bg-primary h-full w-0"></div>
-</div>
-</div>
-</section>
-<!-- Table Section: Estudiantes Registrados -->
-<section>
-<div class="flex items-center justify-between mb-8">
-<h2 class="text-2xl font-bold text-primary tracking-tight">Estudiantes Registrados</h2>
-<div class="flex gap-4">
-<button class="px-6 py-2 bg-surface-container-low text-primary text-sm font-bold uppercase tracking-wider rounded-lg border border-outline-variant/20 hover:bg-surface-container-high transition-colors">
-                            Exportar CSV
+    <div id="dashboard-section" class="p-10 max-w-7xl mx-auto">
+        <header class="mb-12">
+            <h1 class="text-4xl font-extrabold text-primary tracking-tight mb-2">Panel de Administrador</h1>
+            <p class="text-on-surface-variant text-lg">Resumen del estado actual del sistema académico.</p>
+        </header>
+
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/10 shadow-sm transition-all hover:translate-y-[-4px]">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-on-surface-variant text-xs font-bold tracking-widest uppercase">Total Reservas</span>
+                    <div class="p-2 bg-indigo-50 text-indigo-700 rounded-lg">
+                        <span class="material-symbols-outlined">event_available</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline gap-2">
+                    <span class="text-5xl font-extrabold text-primary tracking-tight">0</span>
+                </div>
+            </div>
+            
+            <div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/10 shadow-sm transition-all hover:translate-y-[-4px]">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-on-surface-variant text-xs font-bold tracking-widest uppercase">Usuarios Activos</span>
+                    <div class="p-2 bg-indigo-50 text-indigo-700 rounded-lg">
+                        <span class="material-symbols-outlined">person_search</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline gap-2">
+                    <span class="text-5xl font-extrabold text-primary tracking-tight">0</span>
+                </div>
+            </div>
+
+            <div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/10 shadow-sm transition-all hover:translate-y-[-4px]">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-on-surface-variant text-xs font-bold tracking-widest uppercase">Espacios Disponibles</span>
+                    <div class="p-2 bg-indigo-50 text-indigo-700 rounded-lg">
+                        <span class="material-symbols-outlined">meeting_room</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline gap-2">
+                    <span class="text-5xl font-extrabold text-primary tracking-tight">0</span>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-bold text-primary tracking-tight">Estudiantes Registrados</h2>
+                <button class="px-6 py-2 bg-primary text-white text-sm font-bold uppercase tracking-wider rounded-lg hover:opacity-90 transition-colors">
+                    Añadir Estudiante
+                </button>
+            </div>
+            <div class="bg-surface-container-lowest rounded-xl border border-outline-variant/10 overflow-hidden shadow-sm">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-surface-container-low">
+                            <th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Estudiante</th>
+                            <th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">ID Académico</th>
+                            <th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest text-right">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="px-8 py-20 text-center" colspan="3">
+                                <div class="flex flex-col items-center justify-center text-slate-400">
+                                    <span class="material-symbols-outlined text-5xl mb-4 text-slate-300">group_off</span>
+                                    <p class="text-lg font-medium text-slate-600">No se han encontrado registros</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <div id="horarios-section" class="p-10 max-w-7xl mx-auto" style="display: none;">
+        <header class="mb-12">
+            <h1 class="text-4xl font-extrabold text-primary tracking-tight mb-2">Gestión de Horarios</h1>
+            <p class="text-on-surface-variant text-lg">Administra los horarios disponibles de espacios académicos.</p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-10">
+            <div class="lg:col-span-3 bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/10">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant">Espacio</label>
+                        <select class="w-full bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary py-3 px-4">
+                            <option>Todos los espacios</option>
+                            <option>Salón A</option>
+                            <option>Salón B</option>
+                            <option>Laboratorio 1</option>
+                        </select>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant">Fecha</label>
+                        <input class="w-full bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary py-3 px-4" type="date"/>
+                    </div>
+                    <div class="flex items-end">
+                        <button class="w-full bg-primary text-white font-bold py-3 rounded-lg text-sm hover:opacity-90 transition-opacity">
+                            Filtrar
                         </button>
-<button class="px-6 py-2 bg-primary text-white text-sm font-bold uppercase tracking-wider rounded-lg hover:bg-primary-container transition-colors">
-                            Añadir Estudiante
-                        </button>
-</div>
-</div>
-<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/10 overflow-hidden shadow-sm">
-<table class="w-full text-left border-collapse">
-<thead>
-<tr class="bg-surface-container-low">
-<th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Estudiante</th>
-<th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">ID Académico</th>
-<th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Estado Reserva</th>
-<th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Última Actividad</th>
-<th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest text-right">Acciones</th>
-</tr>
-</thead>
-<tbody>
-<!-- Empty State Placeholder -->
-<tr>
-<td class="px-8 py-20 text-center" colspan="5">
-<div class="flex flex-col items-center justify-center text-slate-400">
-<div class="p-6 bg-slate-50 rounded-full mb-4">
-<span class="material-symbols-outlined text-5xl">group_off</span>
-</div>
-<p class="text-lg font-medium text-slate-600">No se han encontrado registros de estudiantes</p>
-<p class="text-sm">Actualmente no existen usuarios registrados en la base de datos académica.</p>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-primary text-white p-6 rounded-xl relative overflow-hidden">
+                <div class="relative z-10">
+                    <span class="text-xs font-bold uppercase opacity-70">Total Sesiones</span>
+                    <div class="text-3xl font-bold mt-2">0</div>
+                </div>
+                <span class="material-symbols-outlined absolute -bottom-4 -right-4 text-7xl opacity-10 pointer-events-none">schedule</span>
+            </div>
+        </div>
+
+        <div class="bg-surface-container-lowest rounded-xl border border-outline-variant/10 overflow-hidden shadow-sm">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-surface-container-low">
+                            <th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Espacio</th>
+                            <th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Día</th>
+                            <th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Hora Inicio</th>
+                            <th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Hora Fin</th>
+                            <th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest text-right">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="px-8 py-20 text-center" colspan="5">
+                                <div class="flex flex-col items-center justify-center text-slate-400">
+                                    <span class="material-symbols-outlined text-5xl mb-4 text-slate-300">event_busy</span>
+                                    <p class="text-lg font-medium text-slate-600">No se han encontrado horarios</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="usuarios-section" class="p-10 max-w-7xl mx-auto" style="display: none;">
+        <header class="mb-12">
+            <h1 class="text-4xl font-extrabold text-primary tracking-tight mb-2">Gestión de Usuarios</h1>
+            <p class="text-on-surface-variant text-lg">Administra los usuarios del sistema académico.</p>
+        </header>
+
+        <div class="flex items-center justify-between mb-8">
+            <input type="text" placeholder="Buscar usuario..." class="flex-1 max-w-md bg-surface-container-lowest border border-outline-variant/20 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-primary focus:border-transparent"/>
+            <button class="px-6 py-3 bg-primary text-white text-sm font-bold uppercase tracking-wider rounded-lg hover:opacity-90 transition-colors ml-4" onclick="abrirModalUsuario()">
+                + Nuevo Usuario
+            </button>
+        </div>
+
+        <div class="bg-surface-container-lowest rounded-xl border border-outline-variant/10 overflow-hidden shadow-sm">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-surface-container-low">
+                            <th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Nombre</th>
+                            <th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Correo</th>
+                            <th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Rol</th>
+                            <th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest text-right">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="px-8 py-20 text-center" colspan="4">
+                                <div class="flex flex-col items-center justify-center text-slate-400">
+                                    <span class="material-symbols-outlined text-5xl mb-4 text-slate-300">person_off</span>
+                                    <p class="text-lg font-medium text-slate-600">No se han encontrado usuarios</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </main>
-<!-- Floating Action Button Contextual (FAB) -->
-<!-- Suppressed based on "Shell Visibility & Relevance" rule as this is an administrative dashboard focus page -->
-</body></html>
+
+<script>
+function mostrarSeccion(seccion) {
+    const dashboardSection = document.getElementById('dashboard-section');
+    const horariosSection = document.getElementById('horarios-section');
+    const usuariosSection = document.getElementById('usuarios-section');
+    
+    const dashboardLink = document.querySelector('.dashboard-link');
+    const horariosLink = document.querySelector('.horarios-link');
+    const usuariosLink = document.querySelector('.usuarios-link');
+
+    dashboardSection.style.display = 'none';
+    horariosSection.style.display = 'none';
+    usuariosSection.style.display = 'none';
+
+    dashboardLink.classList.remove('bg-indigo-100/50', 'text-indigo-700');
+    dashboardLink.classList.add('text-slate-600', 'hover:bg-slate-200/50');
+    
+    horariosLink.classList.remove('bg-indigo-100/50', 'text-indigo-700');
+    horariosLink.classList.add('text-slate-600', 'hover:bg-slate-200/50');
+    
+    usuariosLink.classList.remove('bg-indigo-100/50', 'text-indigo-700');
+    usuariosLink.classList.add('text-slate-600', 'hover:bg-slate-200/50');
+
+    if (seccion === 'dashboard') {
+        dashboardSection.style.display = 'block';
+        dashboardLink.classList.remove('text-slate-600', 'hover:bg-slate-200/50');
+        dashboardLink.classList.add('bg-indigo-100/50', 'text-indigo-700');
+    } else if (seccion === 'horarios') {
+        horariosSection.style.display = 'block';
+        horariosLink.classList.remove('text-slate-600', 'hover:bg-slate-200/50');
+        horariosLink.classList.add('bg-indigo-100/50', 'text-indigo-700');
+    } else if (seccion === 'usuarios') {
+        usuariosSection.style.display = 'block';
+        usuariosLink.classList.remove('text-slate-600', 'hover:bg-slate-200/50');
+        usuariosLink.classList.add('bg-indigo-100/50', 'text-indigo-700');
+        cargarUsuarios();
+    }
+}
+
+function abrirModalUsuario() {
+    const modalElement = document.getElementById('userModal');
+    const modal = new bootstrap.Modal(modalElement);
+    modal.show();
+}
+
+async function cargarUsuarios() {
+    const tbody = document.querySelector('#usuarios-section table tbody');
+    
+    try {
+        const response = await fetch('http://localhost:3000/api/usuarios');
+        const usuarios = await response.json();
+
+        if (usuarios.length === 0) {
+            tbody.innerHTML = `
+                <tr>
+                    <td class="px-8 py-20 text-center" colspan="4">
+                        <div class="flex flex-col items-center justify-center text-slate-400">
+                            <span class="material-symbols-outlined text-5xl mb-4 text-slate-300">person_off</span>
+                            <p class="text-lg font-medium text-slate-600">No se han encontrado usuarios</p>
+                        </div>
+                    </td>
+                </tr>
+            `;
+        } else {
+            tbody.innerHTML = usuarios.map(usuario => `
+                <tr class="border-b border-outline-variant/10 hover:bg-surface-container-low transition-colors">
+                    <td class="px-8 py-4">
+                        <div>
+                            <p class="font-medium text-on-surface">${usuario.nombre}</p>
+                        </div>
+                    </td>
+                    <td class="px-8 py-4 text-on-surface-variant text-sm">${usuario.correo}</td>
+                    <td class="px-8 py-4">
+                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded-full">${usuario.rol}</span>
+                    </td>
+                    <td class="px-8 py-4 text-right">
+                        <button class="text-slate-400 hover:text-red-600 transition-colors">
+                            <span class="material-symbols-outlined text-lg">delete</span>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+    } catch (error) {
+        console.error('Error al cargar usuarios:', error);
+        tbody.innerHTML = `
+            <tr>
+                <td class="px-8 py-4 text-center text-red-600" colspan="4">
+                    Error al cargar usuarios. Verifica la conexión.
+                </td>
+            </tr>
+        `;
+    }
+}
+
+async function guardarUsuario() {
+    const nombre = document.getElementById('nombreInput').value.trim();
+    const correo = document.getElementById('correoInput').value.trim();
+    const rol = document.getElementById('rolSelect').value;
+
+    if (!nombre || !correo || !rol) {
+        alert('Por favor completa todos los campos');
+        return;
+    }
+
+    try {
+        const response = await fetch('http://localhost:3000/api/usuarios', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                nombre: nombre,
+                correo: correo,
+                rol: rol
+            })
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            alert('✓ Usuario creado exitosamente. Se envió la contraseña temporal al correo.');
+            document.getElementById('userForm').reset();
+            const modalElement = document.getElementById('userModal');
+            const modal = bootstrap.Modal.getInstance(modalElement);
+            modal.hide();
+            modalElement.classList.remove('show');
+            document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+            document.body.style.overflow = 'auto';
+            cargarUsuarios();
+        } else {
+            const error = await response.json();
+            alert('Error: ' + (error.error || 'No se pudo crear el usuario'));
+        }
+    } catch (error) {
+        alert('Error de conexión: ' + error.message);
+    }
+}
+</script>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<div aria-hidden="true" aria-labelledby="userModalLabel" class="modal fade" id="userModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header border-bottom-0 pt-4 px-4">
+                <h5 class="modal-title fw-bold" id="userModalLabel">Registrar Nuevo Usuario</h5>
+                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form id="userForm">
+                    <div class="mb-3">
+                        <label class="form-label small">Nombre Completo</label>
+                        <input class="form-control" id="nombreInput" placeholder="Ej. Juan Pérez" required="" type="text"/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label small">Correo Institucional</label>
+                        <input class="form-control" id="correoInput" placeholder="ejemplo@institucion.edu" required="" type="email"/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label small">Rol</label>
+                        <select class="form-select" id="rolSelect" required="">
+                            <option disabled="" selected="" value="">Seleccionar</option>
+                            <option>Administrador</option>
+                            <option>Profesor</option>
+                            <option>Estudiante</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-top-0 pb-4 px-4 gap-2">
+                <button class="btn btn-light px-4" data-bs-dismiss="modal" type="button">Cancelar</button>
+                <button class="btn btn-primary flex-grow-1" type="button" onclick="guardarUsuario()">Guardar Usuario</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

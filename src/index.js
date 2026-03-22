@@ -20,6 +20,17 @@ app.get('/api/test', (req, res) => {
   res.status(200).json({ msg: "Backend conectado " });
 });
 
+app.get('/api/usuarios', async (req, res) => {
+  try {
+    const query = 'SELECT id_usuario, nombre, correo, rol FROM usuario ORDER BY nombre ASC';
+    const result = await pool.query(query);
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error('Error al obtener usuarios:', error);
+    res.status(500).json({ error: "Error al obtener usuarios: " + error.message });
+  }
+});
+
 app.post('/api/usuarios', async (req, res) => {
   const { nombre, correo, rol } = req.body;
 
