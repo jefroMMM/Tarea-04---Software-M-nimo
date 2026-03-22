@@ -2,6 +2,7 @@ services:
   db:
     image: postgres:15-alpine
     container_name: postgres_universidad
+    env_file: .env
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: ${DB_PASSWORD}
@@ -14,6 +15,7 @@ services:
   backend:
     build: .
     container_name: backend_reservas
+    env_file: .env
     depends_on:
       - db
     ports:
