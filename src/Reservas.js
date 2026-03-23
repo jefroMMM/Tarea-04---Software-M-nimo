@@ -13,7 +13,7 @@ module.exports = (app, pool) => {
       res.status(200).json(result.rows);
     } catch (error) {
       console.error('Error al obtener reservas:', error);
-      res.status(500).json({ error: "Error al obtener reservas: " + error.message });
+      res.status(500).json({ error: 'Error al obtener reservas: ' + error.message });
     }
   });
 
@@ -29,7 +29,7 @@ module.exports = (app, pool) => {
       res.status(200).json(result.rows);
     } catch (error) {
       console.error('Error al obtener reservas del espacio:', error);
-      res.status(500).json({ error: "Error al obtener reservas: " + error.message });
+      res.status(500).json({ error: 'Error al obtener reservas: ' + error.message });
     }
   });
 
@@ -98,7 +98,7 @@ module.exports = (app, pool) => {
       if (conflictCount > 0) {
         await client.query('ROLLBACK');
         return res.status(400).json({
-          error: 'Ese espacio ya estÃ¡ reservado en el horario seleccionado'
+          error: 'Ese espacio ya está reservado en el horario seleccionado'
         });
       }
 
@@ -112,13 +112,13 @@ module.exports = (app, pool) => {
       await client.query('COMMIT');
 
       res.status(201).json({
-        msg: "Reserva creada exitosamente",
+        msg: 'Reserva creada exitosamente',
         id_reserva: insertResult.rows[0].id_reserva
       });
     } catch (error) {
       await client.query('ROLLBACK');
       console.error('Error al crear reserva:', error);
-      res.status(500).json({ error: "Error al crear reserva: " + error.message });
+      res.status(500).json({ error: 'Error al crear reserva: ' + error.message });
     } finally {
       client.release();
     }
@@ -135,10 +135,10 @@ module.exports = (app, pool) => {
         return res.status(404).json({ error: 'Reserva no encontrada' });
       }
 
-      res.status(200).json({ msg: "Reserva cancelada exitosamente" });
+      res.status(200).json({ msg: 'Reserva cancelada exitosamente' });
     } catch (error) {
       console.error('Error al cancelar reserva:', error);
-      res.status(500).json({ error: "Error al cancelar reserva: " + error.message });
+      res.status(500).json({ error: 'Error al cancelar reserva: ' + error.message });
     }
   });
 };

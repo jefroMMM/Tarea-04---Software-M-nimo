@@ -1,3 +1,4 @@
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
 CREATE TABLE Usuario (
     id_usuario SERIAL PRIMARY KEY,
@@ -7,17 +8,15 @@ CREATE TABLE Usuario (
     rol VARCHAR(50) NOT NULL
 );
 
-
 CREATE TABLE "Espacio" (
     id_espacio SERIAL PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     "Primer_Hora_Disponible" TIME NOT NULL,
     "Ultima_Hora_Disponible" TIME NOT NULL,
-    tipo VARCHAR(50) NOT NULL CHECK(tipo IN ('SalÃ³n', 'Laboratorio', 'Auditorio')),
+    tipo VARCHAR(50) NOT NULL CHECK(tipo IN ('Salon', 'Laboratorio', 'Auditorio')),
     capacidad INT NOT NULL,
     estado VARCHAR(50) DEFAULT 'Activo' CHECK(estado IN ('Activo', 'Mantenimiento', 'Inactivo'))
 );
-
 
 CREATE TABLE Reserva (
     id_reserva SERIAL PRIMARY KEY,
@@ -31,10 +30,16 @@ CREATE TABLE Reserva (
     CONSTRAINT fk_espacio FOREIGN KEY (id_espacio) REFERENCES "Espacio"(id_espacio) ON DELETE CASCADE
 );
 
-
+INSERT INTO usuario (nombre, correo, contrasena, rol)
+VALUES (
+    'Profesor Admin',
+    'admin@institucion.edu',
+    crypt('admin', gen_salt('bf')),
+    'Profesor'
+);
 
 INSERT INTO "Espacio" (nombre, "Primer_Hora_Disponible", "Ultima_Hora_Disponible", tipo, capacidad, estado)
 VALUES
-('SalÃ³n A-101', '08:00', '18:00', 'SalÃ³n', 40, 'Activo'),
-('Laboratorio de ComputaciÃ³n', '08:00', '17:00', 'Laboratorio', 25, 'Mantenimiento'),
+('Salon A-101', '08:00', '18:00', 'Salon', 40, 'Activo'),
+('Laboratorio de Computacionn', '08:00', '17:00', 'Laboratorio', 25, 'Mantenimiento'),
 ('Auditorio Principal', '09:00', '19:00', 'Auditorio', 200, 'Inactivo');

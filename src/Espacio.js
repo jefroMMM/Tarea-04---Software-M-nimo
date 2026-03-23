@@ -6,7 +6,7 @@ module.exports = (app, pool) => {
       res.status(200).json(result.rows);
     } catch (error) {
       console.error('Error al obtener espacios:', error);
-      res.status(500).json({ error: "Error al obtener espacios: " + error.message });
+      res.status(500).json({ error: 'Error al obtener espacios: ' + error.message });
     }
   });
 
@@ -17,8 +17,8 @@ module.exports = (app, pool) => {
       return res.status(400).json({ error: 'Todos los campos son requeridos' });
     }
 
-    if (!['SalÃ³n', 'Laboratorio', 'Auditorio'].includes(tipo)) {
-      return res.status(400).json({ error: 'Tipo de espacio no vÃ¡lido' });
+    if (!['Salón', 'Laboratorio', 'Auditorio'].includes(tipo)) {
+      return res.status(400).json({ error: 'Tipo de espacio no válido' });
     }
 
     try {
@@ -35,12 +35,12 @@ module.exports = (app, pool) => {
       const result = await pool.query(query, values);
 
       res.status(201).json({
-        msg: "Espacio creado exitosamente",
+        msg: 'Espacio creado exitosamente',
         id_espacio: result.rows[0].id_espacio
       });
     } catch (error) {
       console.error('Error al crear espacio:', error);
-      res.status(500).json({ error: "Error al crear espacio: " + error.message });
+      res.status(500).json({ error: 'Error al crear espacio: ' + error.message });
     }
   });
 
@@ -51,7 +51,7 @@ module.exports = (app, pool) => {
     try {
       if (estado && !nombre && !tipo && !capacidad) {
         if (!['Activo', 'Mantenimiento', 'Inactivo'].includes(estado)) {
-          return res.status(400).json({ error: 'Estado no vÃ¡lido' });
+          return res.status(400).json({ error: 'Estado no válido' });
         }
 
         const query = 'UPDATE "Espacio" SET estado = $1 WHERE id_espacio = $2 RETURNING id_espacio';
@@ -61,15 +61,15 @@ module.exports = (app, pool) => {
           return res.status(404).json({ error: 'Espacio no encontrado' });
         }
 
-        return res.status(200).json({ msg: "Estado actualizado exitosamente" });
+        return res.status(200).json({ msg: 'Estado actualizado exitosamente' });
       }
 
       if (!nombre || !Primer_Hora_Disponible || !Ultima_Hora_Disponible || !tipo || !capacidad) {
         return res.status(400).json({ error: 'Todos los campos son requeridos' });
       }
 
-      if (!['SalÃ³n', 'Laboratorio', 'Auditorio'].includes(tipo)) {
-        return res.status(400).json({ error: 'Tipo de espacio no vÃ¡lido' });
+      if (!['Salón', 'Laboratorio', 'Auditorio'].includes(tipo)) {
+        return res.status(400).json({ error: 'Tipo de espacio no válido' });
       }
 
       const query = 'UPDATE "Espacio" SET nombre = $1, "Primer_Hora_Disponible" = $2, "Ultima_Hora_Disponible" = $3, tipo = $4, capacidad = $5 WHERE id_espacio = $6 RETURNING id_espacio';
@@ -80,10 +80,10 @@ module.exports = (app, pool) => {
         return res.status(404).json({ error: 'Espacio no encontrado' });
       }
 
-      res.status(200).json({ msg: "Espacio actualizado exitosamente" });
+      res.status(200).json({ msg: 'Espacio actualizado exitosamente' });
     } catch (error) {
       console.error('Error al actualizar espacio:', error);
-      res.status(500).json({ error: "Error al actualizar espacio: " + error.message });
+      res.status(500).json({ error: 'Error al actualizar espacio: ' + error.message });
     }
   });
 
@@ -98,10 +98,10 @@ module.exports = (app, pool) => {
         return res.status(404).json({ error: 'Espacio no encontrado' });
       }
 
-      res.status(200).json({ msg: "Espacio eliminado exitosamente" });
+      res.status(200).json({ msg: 'Espacio eliminado exitosamente' });
     } catch (error) {
       console.error('Error al eliminar espacio:', error);
-      res.status(500).json({ error: "Error al eliminar espacio: " + error.message });
+      res.status(500).json({ error: 'Error al eliminar espacio: ' + error.message });
     }
   });
 };
